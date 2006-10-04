@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.12
-Release:        2%{?dist}
+Version:        0.13
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
 Group:          Development/Libraries
@@ -68,6 +68,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Tue Oct 03 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.13-1
+- update to 0.13
+
 * Fri Sep 08 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.12-2
 - bump
 
