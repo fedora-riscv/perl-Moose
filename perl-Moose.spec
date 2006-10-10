@@ -33,6 +33,20 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 %description
 Moose is an extension of the Perl 5 object system.
 
+Yes, I know there has been an explosion recently of new ways to build
+objects in Perl 5, most of them based on inside-out objects and other
+such things. Moose is different because it is not a new object system
+for Perl 5, but instead an extension of the existing object system.
+
+Moose is built on top of Class::MOP, which is a metaclass system for
+Perl 5. This means that Moose not only makes building normal Perl 5
+objects better, but it also provides the power of metaclass programming.
+
+While Moose is very much inspired by Perl 6, it is not itself Perl
+6.  Instead, it is an OO system for Perl 5. I built Moose because I was
+tired or writing the same old boring Perl 5 OO code, and drooling over
+Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
+
 %prep
 %setup -q -n Moose-%{version}
 
@@ -64,6 +78,7 @@ rm -rf %{buildroot}
 * Tue Oct 10 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.14-1
 - update to 0.14
 - drop some cruft from the specfile
+- make %%description a touch more verbose :)
 
 * Tue Oct 03 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.13-1
 - update to 0.13
