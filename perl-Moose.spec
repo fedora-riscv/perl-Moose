@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.14
+Version:        0.15
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
@@ -9,7 +9,7 @@ Source0:        http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
-BuildRequires:  perl(Class::MOP) >= 0.34
+BuildRequires:  perl(Class::MOP) >= 0.36
 BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(Sub::Exporter) >= 0.954
 BuildRequires:  perl(Sub::Install) >= 0.92
@@ -75,6 +75,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Mon Nov 06 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.15-1
+- update to 0.15
+
 * Tue Oct 10 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.14-1
 - update to 0.14
 - drop some cruft from the specfile
