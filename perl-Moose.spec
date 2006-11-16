@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.17
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
 Group:          Development/Libraries
@@ -27,6 +27,8 @@ BuildRequires:  perl(HTTP::Headers), perl(Params::Coerce), perl(URI)
 # commented out as Locale::US's license is ambiguous at the moment, precluding
 # packaging it.
 #BuildRequires:  perl(Regexp::Common), perl(Locale::US)
+# optional test #4 (yes, I know IO::File is core)
+BuildRequires:  perl(IO::File), perl(IO::String)
 
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -75,6 +77,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Thu Nov 16 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.17-2
+- add IO::File and IO::String to br's for testing
+
 * Thu Nov 16 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.17-1
 - update to 0.17
 
