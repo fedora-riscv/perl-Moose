@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.17
-Release:        2%{?dist}
+Version:        0.18
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
 Group:          Development/Libraries
@@ -9,11 +9,10 @@ Source0:        http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 
+BuildRequires:  perl, perl(Module::Build)
 BuildRequires:  perl(Class::MOP) >= 0.36
-BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(Sub::Exporter) >= 0.954
 BuildRequires:  perl(Sub::Install) >= 0.92
-BuildRequires:  perl(Sub::Name) >= 0.02
 BuildRequires:  perl(Test::Exception) >= 0.21
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
@@ -77,6 +76,10 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Fri Mar 23 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.18-1
+- Sub::Name only needed as a br for Moose < 0.18
+- update to 0.18
+
 * Thu Nov 16 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.17-2
 - add IO::File and IO::String to br's for testing
 
