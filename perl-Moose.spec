@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.18
+Version:        0.20
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
@@ -26,8 +26,14 @@ BuildRequires:  perl(HTTP::Headers), perl(Params::Coerce), perl(URI)
 # commented out as Locale::US's license is ambiguous at the moment, precluding
 # packaging it.
 #BuildRequires:  perl(Regexp::Common), perl(Locale::US)
-# optional test #4 (yes, I know IO::File is core)
+# optional test #5 (yes, I know IO::File is core)
 BuildRequires:  perl(IO::File), perl(IO::String)
+# optional test #6
+BuildRequires:  perl(Test::Deep)
+# optional test #7 -- not yet in Fedora
+#BuildRequires:  perl(Declare::Constraints::Simple)
+# optional test #8 (as of 0.20)
+BuildRequires:  perl(Module::Refresh)
 
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -76,6 +82,10 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Apr 07 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.20-1
+- update to 0.20
+- add additional BR's for new optional tests
+
 * Fri Mar 23 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.18-1
 - Sub::Name only needed as a br for Moose < 0.18
 - update to 0.18
