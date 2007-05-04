@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.20
+Version:        0.21
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
@@ -8,8 +8,12 @@ URL:            http://search.cpan.org/dist/Moose/
 Source0:        http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
+Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-BuildRequires:  perl, perl(Module::Build)
+# core
+BuildRequires:  perl(Test::More)
+# cpan
+BuildRequires:  perl(Module::Build)
 BuildRequires:  perl(Class::MOP) >= 0.36
 BuildRequires:  perl(Sub::Exporter) >= 0.954
 BuildRequires:  perl(Sub::Install) >= 0.92
@@ -26,16 +30,15 @@ BuildRequires:  perl(HTTP::Headers), perl(Params::Coerce), perl(URI)
 # commented out as Locale::US's license is ambiguous at the moment, precluding
 # packaging it.
 #BuildRequires:  perl(Regexp::Common), perl(Locale::US)
-# optional test #5 (yes, I know IO::File is core)
+# optional test #5
 BuildRequires:  perl(IO::File), perl(IO::String)
 # optional test #6
 BuildRequires:  perl(Test::Deep)
-# optional test #7 -- not yet in Fedora
-#BuildRequires:  perl(Declare::Constraints::Simple)
+# optional test #7 
+BuildRequires:  perl(Declare::Constraints::Simple)
 # optional test #8 (as of 0.20)
 BuildRequires:  perl(Module::Refresh)
 
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -61,6 +64,16 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 %{__perl} Build.PL installdirs=vendor
 ./Build
 
+# Filter unwanted Provides:
+cat << \EOF > %{name}-prov
+#!/bin/sh
+%{__perl_provides} $* |\
+  sed -e '/perl(MyMoose.*)/d; /perl(Bar)/d; /perl(Foo)/d'    
+EOF
+
+%define __perl_provides %{_builddir}/Moose-%{version}/%{name}-prov
+chmod +x %{__perl_provides}
+
 %install
 rm -rf %{buildroot}
 
@@ -77,11 +90,18 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc Changes README
+%doc Changes README t/
 %{perl_vendorlib}/*
 %{_mandir}/man3/*
 
 %changelog
+* Fri May 04 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.21-1
+- update to 0.21
+
+* Tue May 01 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.20-2
+- add t/ to %%doc
+- add br for optional test #7
+
 * Sat Apr 07 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.20-1
 - update to 0.20
 - add additional BR's for new optional tests
