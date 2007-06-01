@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.21
+Version:        0.22
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL or Artistic
@@ -64,6 +64,8 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 %{__perl} Build.PL installdirs=vendor
 ./Build
 
+find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
+
 # Filter unwanted Provides:
 cat << \EOF > %{name}-prov
 #!/bin/sh
@@ -95,6 +97,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Thu May 31 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.22-1
+- update to 0.22
+
 * Fri May 04 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.21-1
 - update to 0.21
 
