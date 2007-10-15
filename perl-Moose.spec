@@ -18,6 +18,7 @@ BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
 # cpan
 BuildRequires:  perl(Class::MOP)         >= 0.39
+BuildRequires:  perl(Module::Build) 
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
 BuildRequires:  perl(Test::Exception)    >= 0.21
