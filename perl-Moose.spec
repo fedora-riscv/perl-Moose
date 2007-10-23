@@ -1,8 +1,8 @@
 Name:           perl-Moose
-Version:        0.22
+Version:        0.26
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
-License:        GPL or Artistic
+License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
 Source0:        http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
@@ -10,14 +10,18 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
+# write temp db to tmpdir rather than .
+Patch:          t202_tmpfile.patch
+
 # core
-BuildRequires:  perl(Test::More)
+BuildRequires:  perl(Test::More)         >= 0.62
+BuildRequires:  perl(ExtUtils::MakeMaker)
 # cpan
-BuildRequires:  perl(Module::Build)
-BuildRequires:  perl(Class::MOP) >= 0.36
-BuildRequires:  perl(Sub::Exporter) >= 0.954
-BuildRequires:  perl(Sub::Install) >= 0.92
-BuildRequires:  perl(Test::Exception) >= 0.21
+BuildRequires:  perl(Class::MOP)         >= 0.39
+BuildRequires:  perl(Module::Build) 
+BuildRequires:  perl(Sub::Exporter)      >= 0.954
+BuildRequires:  perl(Sub::Install)       >= 0.92
+BuildRequires:  perl(Test::Exception)    >= 0.21
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
 # optional test #1 (in no particular order)
@@ -60,6 +64,9 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 %prep
 %setup -q -n Moose-%{version}
 
+# test patches
+%patch
+
 %build
 %{__perl} Build.PL installdirs=vendor
 ./Build
@@ -97,6 +104,14 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sun Oct 14 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.26-1
+- udpate to 0.26
+
+* Sat Aug 11 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.24-1
+- update to 0.24
+- license tag: GPL -> GPL+
+- patch t/202_...t to write to a tmpdir rather than .
+
 * Thu May 31 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.22-1
 - update to 0.22
 

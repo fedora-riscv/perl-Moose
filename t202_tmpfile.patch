@@ -1,0 +1,38 @@
+--- t/200_examples/002_example_Moose_POOP.t.orig	2007-08-11 09:35:55.683687891 -0700
++++ t/200_examples/002_example_Moose_POOP.t	2007-08-11 09:36:25.010424972 -0700
+@@ -37,14 +37,18 @@
+     use Moose;
+     
+     use DBM::Deep;
++    use File::Temp qw{ tempfile };
++    use File::Spec::Functions qw{ tmpdir };
+     
+     extends 'Moose::Meta::Instance';
+     
+     {
+         my %INSTANCE_COUNTERS;
++    
++        my (undef, $filename) = tempfile 't_202_XXXXXXX', DIR => tmpdir;
+ 
+         my $db = DBM::Deep->new({
+-            file      => "newswriter.db",
++            file      => $filename,
+             autobless => 1,
+             locking   => 1,
+         });
+@@ -54,7 +58,7 @@
+             #warn Dumper $db;            
+             $db = undef;
+             $db = DBM::Deep->new({
+-                file      => "newswriter.db",
++                file      => $filename,
+                 autobless => 1,
+                 locking   => 1,
+             }); 
+@@ -431,4 +435,4 @@
+     
+ }
+ 
+-unlink('newswriter.db') if -e 'newswriter.db';
+\ No newline at end of file
++
