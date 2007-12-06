@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.30
+Version:        0.32
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -107,6 +107,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Wed Dec 05 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.32-1
+- update to 0.32
+
 * Sun Nov 25 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.30-1
 - update to 0.30
 
