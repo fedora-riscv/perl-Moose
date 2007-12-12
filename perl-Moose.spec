@@ -1,11 +1,12 @@
 Name:           perl-Moose
-Version:        0.26
+Version:        0.32
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
-Source0:        http://www.cpan.org/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+#Source0:        http://search.cpan.org/CPAN/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -17,7 +18,7 @@ Patch:          t202_tmpfile.patch
 BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
 # cpan
-BuildRequires:  perl(Class::MOP)         >= 0.39
+BuildRequires:  perl(Class::MOP)         >= 0.46
 BuildRequires:  perl(Module::Build) 
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
@@ -67,10 +68,6 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 # test patches
 %patch
 
-%build
-%{__perl} Build.PL installdirs=vendor
-./Build
-
 find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
 
 # Filter unwanted Provides:
@@ -83,16 +80,22 @@ EOF
 %define __perl_provides %{_builddir}/Moose-%{version}/%{name}-prov
 chmod +x %{__perl_provides}
 
+%build
+%{__perl} Makefile.PL INSTALLDIRS=vendor
+make %{?_smp_mflags}
+
+
 %install
 rm -rf %{buildroot}
 
-./Build install destdir=%{buildroot} create_packlist=0
+make pure_install PERL_INSTALL_ROOT=%{buildroot}
+find %{buildroot} -type f -name .packlist -exec rm -f {} +
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null \;
 
 %{_fixperms} %{buildroot}/*
 
 %check
-./Build test
+make test
 
 %clean
 rm -rf %{buildroot}
@@ -104,6 +107,16 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Wed Dec 05 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.32-1
+- update to 0.32
+
+* Sun Nov 25 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.30-1
+- update to 0.30
+
+* Sat Nov 17 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.29-1
+- update to 0.29
+- refactor to Module::Install
+
 * Sun Oct 14 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.26-1
 - udpate to 0.26
 
