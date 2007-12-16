@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.32
+Version:        0.33
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -18,8 +18,9 @@ Patch:          t202_tmpfile.patch
 BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
 # cpan
-BuildRequires:  perl(Class::MOP)         >= 0.46
+BuildRequires:  perl(Class::MOP)         >= 0.49
 BuildRequires:  perl(Module::Build) 
+BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
 BuildRequires:  perl(Test::Exception)    >= 0.21
@@ -107,6 +108,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Dec 15 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.33-1
+- update to 0.33
+
 * Wed Dec 05 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.32-1
 - update to 0.32
 
