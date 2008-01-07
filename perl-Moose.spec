@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.33
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -71,6 +71,9 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 
 find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
 
+# remove the originals of patched files...
+find . -name '*.orig' -exec rm -v {} +
+
 # Filter unwanted Provides:
 cat << \EOF > %{name}-prov
 #!/bin/sh
@@ -108,6 +111,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Mon Jan 07 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.33-2
+- remove *.orig files from t/ (BZ#427754)
+
 * Sat Dec 15 2007 Chris Weyl <cweyl@alumni.drew.edu> 0.33-1
 - update to 0.33
 
