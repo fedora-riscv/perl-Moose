@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.33
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Wed Mar 05 2008 Tom "spot" Callaway <tcallawa@redhat.com> 0.33-3
+- rebuild for new perl
+
 * Mon Jan 07 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.33-2
 - remove *.orig files from t/ (BZ#427754)
 
