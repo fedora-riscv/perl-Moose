@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.33
-Release:        3%{?dist}
+Version:        0.44
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -67,7 +67,7 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 %setup -q -n Moose-%{version}
 
 # test patches
-%patch
+#patch
 
 find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
 
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Wed May 21 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.44-1
+- update to 0.44
+
 * Wed Mar 05 2008 Tom "spot" Callaway <tcallawa@redhat.com> 0.33-3
 - rebuild for new perl
 
