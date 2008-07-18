@@ -1,13 +1,13 @@
 Name:           perl-Moose
-Version:        0.51
+Version:        0.54
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
 # source tends to flip between these three authors
-Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
-#Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+#Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
@@ -107,6 +107,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Fri Jul 18 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.54-1
+- update to 0.54
+
 * Sat Jun 28 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.51-1
 - update to 0.51
 
