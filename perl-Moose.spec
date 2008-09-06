@@ -1,13 +1,14 @@
 Name:           perl-Moose
-Version:        0.54
+Version:        0.57
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
 # source tends to flip between these three authors
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
-Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
+#Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
@@ -17,9 +18,10 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
 # cpan
-BuildRequires:  perl(Class::MOP)         >= 0.55
+BuildRequires:  perl(Class::MOP)         >= 0.65
 BuildRequires:  perl(Module::Build) 
 BuildRequires:  perl(Filter::Simple) 
+BuildRequires:  perl(List::MoreUtils)
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
 BuildRequires:  perl(Test::Exception)    >= 0.21
@@ -107,6 +109,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Sep 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.57-1
+- update to 0.57
+
 * Fri Jul 18 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.54-1
 - update to 0.54
 
