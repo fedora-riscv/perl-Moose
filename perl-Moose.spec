@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.57
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -45,6 +45,9 @@ BuildRequires:  perl(Test::Deep)
 BuildRequires:  perl(Declare::Constraints::Simple)
 # optional test #8 (as of 0.20)
 BuildRequires:  perl(Module::Refresh)
+# optional tests #9 (as of 0.57)
+BuildRequires:  perl(Test::Warn)
+BuildRequires:  perl(Test::Output)
 
 
 %description
@@ -109,6 +112,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Sep 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.57-2
+- add additional test BR's
+
 * Sat Sep 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.57-1
 - update to 0.57
 
