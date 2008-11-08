@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.61
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -16,6 +16,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Class::MOP)         >= 0.68
+BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(List::MoreUtils)
 BuildRequires:  perl(Scalar::Util)       >= 1.19
@@ -111,6 +112,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-3
+- same with Devel::GlobalDestruction (same RT as below)
+
 * Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-2
 - add Sub::Name as a build dep (RT#40772)
 
