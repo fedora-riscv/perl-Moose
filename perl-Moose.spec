@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.57
-Release:        2%{?dist}
+Version:        0.61
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -14,16 +14,14 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-# core
-BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
-# cpan
-BuildRequires:  perl(Class::MOP)         >= 0.65
-BuildRequires:  perl(Module::Build) 
+BuildRequires:  perl(Class::MOP)         >= 0.68
 BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(List::MoreUtils)
+BuildRequires:  perl(Scalar::Util)       >= 1.19
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
+BuildRequires:  perl(Test::More)         >= 0.77
 BuildRequires:  perl(Test::Exception)    >= 0.21
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
@@ -112,6 +110,10 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-1
+- update to 0.61
+- update BR's
+
 * Sat Sep 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.57-2
 - add additional test BR's
 

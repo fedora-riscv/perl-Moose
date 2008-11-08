@@ -1,1 +1,5 @@
-Moose-0.57.tar.gz
+Moose-*
+*.rpm
+*.gz
+*.tar
+Moose-0.61.tar.gz
