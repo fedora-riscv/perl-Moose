@@ -1,11 +1,11 @@
 Name:           perl-Moose
 Version:        0.61
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
-# source tends to flip between these three authors
+# source tends to flip between these four authors
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
@@ -16,13 +16,11 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker)
 BuildRequires:  perl(Class::MOP)         >= 0.68
-BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(List::MoreUtils)
 BuildRequires:  perl(Scalar::Util)       >= 1.19
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
-BuildRequires:  perl(Sub::Name)
 BuildRequires:  perl(Test::More)         >= 0.77
 BuildRequires:  perl(Test::Exception)    >= 0.21
 BuildRequires:  perl(Test::LongString)
@@ -112,6 +110,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-4
+- aaaand drop them again, as it was really perl-Class-MOP's issue.
+
 * Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-3
 - same with Devel::GlobalDestruction (same RT as below)
 
