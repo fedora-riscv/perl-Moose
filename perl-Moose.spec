@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.63
+Version:        0.64
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -15,7 +15,7 @@ BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(Class::MOP)         >= 0.72
+BuildRequires:  perl(Class::MOP)         >= 0.75
 BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
 BuildRequires:  perl(Scalar::Util)       >= 1.19
@@ -111,6 +111,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sun Jan 04 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.64-1
+- update to 0.64
+
 * Sun Dec 28 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.63-1
 - update to 0.63
 - bump br versions on Moose, List::MoreUtils
