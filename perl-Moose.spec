@@ -1,11 +1,11 @@
 Name:           perl-Moose
-Version:        0.57
-Release:        2%{?dist}
+Version:        0.64
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
-# source tends to flip between these three authors
+# source tends to flip between these four authors
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
 #Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
@@ -14,16 +14,15 @@ BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-# core
-BuildRequires:  perl(Test::More)         >= 0.62
 BuildRequires:  perl(ExtUtils::MakeMaker)
-# cpan
-BuildRequires:  perl(Class::MOP)         >= 0.65
-BuildRequires:  perl(Module::Build) 
+BuildRequires:  perl(Class::MOP)         >= 0.75
 BuildRequires:  perl(Filter::Simple) 
-BuildRequires:  perl(List::MoreUtils)
+BuildRequires:  perl(List::MoreUtils)    >= 0.12
+BuildRequires:  perl(Scalar::Util)       >= 1.19
 BuildRequires:  perl(Sub::Exporter)      >= 0.954
 BuildRequires:  perl(Sub::Install)       >= 0.92
+BuildRequires:  perl(Task::Weaken)
+BuildRequires:  perl(Test::More)         >= 0.77
 BuildRequires:  perl(Test::Exception)    >= 0.21
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
@@ -112,6 +111,30 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sun Jan 04 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.64-1
+- update to 0.64
+
+* Sun Dec 28 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.63-1
+- update to 0.63
+- bump br versions on Moose, List::MoreUtils
+
+* Sat Dec 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.62-1
+- update to 0.62
+- new Task::Weaken and Class::MOP requirements
+
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-4
+- aaaand drop them again, as it was really perl-Class-MOP's issue.
+
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-3
+- same with Devel::GlobalDestruction (same RT as below)
+
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-2
+- add Sub::Name as a build dep (RT#40772)
+
+* Sat Nov 08 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.61-1
+- update to 0.61
+- update BR's
+
 * Sat Sep 06 2008 Chris Weyl <cweyl@alumni.drew.edu> 0.57-2
 - add additional test BR's
 
