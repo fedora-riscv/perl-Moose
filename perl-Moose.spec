@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.71
-Release:        2%{?dist}
+Version:        0.72
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -15,7 +15,7 @@ BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(Class::MOP)         >= 0.77
+BuildRequires:  perl(Class::MOP)         >= 0.78
 BuildRequires:  perl(Filter::Simple) 
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
 BuildRequires:  perl(Scalar::Util)       >= 1.19
@@ -53,14 +53,11 @@ BuildRequires:  perl(Test::Output)
 %description
 Moose is an extension of the Perl 5 object system.
 
-Yes, I know there has been an explosion recently of new ways to build
-objects in Perl 5, most of them based on inside-out objects and other
-such things. Moose is different because it is not a new object system
-for Perl 5, but instead an extension of the existing object system.
-
 Moose is built on top of Class::MOP, which is a metaclass system for
 Perl 5. This means that Moose not only makes building normal Perl 5
 objects better, but it also provides the power of metaclass programming.
+such things.  Moose is different from other Perl 5 object systems because
+it is not a new system, but instead an extension of the existing one.
 
 While Moose is very much inspired by Perl 6, it is not itself Perl
 6.  Instead, it is an OO system for Perl 5. I built Moose because I was
@@ -112,6 +109,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Sun Mar 08 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.72-1
+- update to 0.72
+
 * Thu Feb 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.71-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_11_Mass_Rebuild
 
