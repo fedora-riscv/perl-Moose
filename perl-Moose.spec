@@ -1,48 +1,48 @@
 Name:           perl-Moose
-Version:        0.74
+Version:        0.79
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
-# source tends to flip between these four authors
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
-#Source0:        http://search.cpan.org/CPAN/authors/id/S/SA/SARTAK/Moose-%{version}.tar.gz
-#Source0:        http://search.cpan.org/CPAN/authors/id/S/ST/STEVAN/Moose-%{version}.tar.gz
-#Source0:        http://search.cpan.org/CPAN/authors/id/G/GR/GRODITI/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-BuildRequires:  perl(ExtUtils::MakeMaker)
-BuildRequires:  perl(Class::MOP)         >= 0.81
+BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires:  perl(Class::MOP)         >= 0.83
 BuildRequires:  perl(Data::OptList)
-BuildRequires:  perl(Filter::Simple) 
+BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
 BuildRequires:  perl(Scalar::Util)       >= 1.19
-BuildRequires:  perl(Sub::Exporter)      >= 0.954
+BuildRequires:  perl(Sub::Exporter)      >= 0.972
 BuildRequires:  perl(Sub::Install)       >= 0.92
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Test::More)         >= 0.77
-BuildRequires:  perl(Test::Exception)    >= 0.21
+BuildRequires:  perl(Test::Exception)    >= 0.27
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
-# optional test #1 (in no particular order) 
+# optional test #1 (in no particular order)
 # ** moved to author tests
 #BuildRequires:  perl(Test::Pod), perl(Test::Pod::Coverage)
 # optional test #2
-BuildRequires:  perl(DBM::Deep) >= 0.983, perl(DateTime::Format::MySQL)
+BuildRequires:  perl(DBM::Deep) >= 0.983
+BuildRequires:  perl(DateTime::Format::MySQL)
 # optional test #3
-BuildRequires:  perl(HTTP::Headers), perl(Params::Coerce), perl(URI)
+BuildRequires:  perl(HTTP::Headers)
+BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(URI)
 # optional test #4
 # commented out as Locale::US's license is ambiguous at the moment, precluding
 # packaging it.
 #BuildRequires:  perl(Regexp::Common), perl(Locale::US)
 # optional test #5
-BuildRequires:  perl(IO::File), perl(IO::String)
+BuildRequires:  perl(IO::File)
+BuildRequires:  perl(IO::String)
 # optional test #6
 BuildRequires:  perl(Test::Deep)
-# optional test #7 
+# optional test #7
 BuildRequires:  perl(Declare::Constraints::Simple)
 # optional test #8 (as of 0.20)
 BuildRequires:  perl(Module::Refresh)
@@ -50,6 +50,15 @@ BuildRequires:  perl(Module::Refresh)
 BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
+# don't "provide" private Perl libs, or bits from _docdir
+%global _use_internal_dependency_generator 0
+%global __deploop() while read FILE; do /usr/lib/rpm/rpmdeps -%{1} ${FILE}; done | /bin/sort -u
+%global __find_provides /bin/sh -c "%{__grep} -v '%_docdir' | %{__grep} -v '%{perl_vendorarch}/.*\\.so$' | %{__deploop P}"
+%global __find_requires /bin/sh -c "%{__grep} -v '%_docdir' | %{__deploop R}"
+
+### auto-added brs!
+BuildRequires:  perl(Sub::Name)
+BuildRequires:  perl(Carp)
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -68,20 +77,9 @@ Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
 %prep
 %setup -q -n Moose-%{version}
 
+# tidy things up...
 find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
-
-# remove the originals of patched files...
 find . -name '*.orig' -exec rm -v {} +
-
-# Filter unwanted Provides:
-cat << \EOF > %{name}-prov
-#!/bin/sh
-%{__perl_provides} $* |\
-  sed -e '/perl(MyMoose.*)/d; /perl(Bar)/d; /perl(Foo)/d'    
-EOF
-
-%define __perl_provides %{_builddir}/Moose-%{version}/%{name}-prov
-chmod +x %{__perl_provides}
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -110,6 +108,21 @@ rm -rf %{buildroot}
 %{_mandir}/man3/*
 
 %changelog
+* Tue May 19 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.79-1
+- auto-update to 0.79 (by cpan-spec-update 0.01)
+
+* Wed May 13 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.78-1
+- auto-update to 0.78 (by cpan-spec-update 0.01)
+- altered br on perl(Test::Exception) (0.21 => 0.27)
+- altered br on perl(ExtUtils::MakeMaker) (0 => 6.42)
+- added a new br on perl(Sub::Name) (version 0)
+- altered br on perl(Class::MOP) (0.81 => 0.83)
+- altered br on perl(Sub::Exporter) (0.954 => 0.972)
+- added a new br on perl(Carp) (version 0)
+
+* Mon May 04 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.74-2
+- switch filtering to a cleaner system
+
 * Sat Apr 18 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.74-1
 - update to 0.74
 
@@ -238,3 +251,10 @@ rm -rf %{buildroot}
 
 * Sat Sep 02 2006 Chris Weyl <cweyl@alumni.drew.edu> 0.12-1
 - Specfile autogenerated by cpanspec 1.69.1.
+
+Checking : Moose-0.79.tar.gz on https://cvs.fedoraproject.org/repo/pkgs/upload.cgi...
+Uploading: Moose-0.79.tar.gz to https://cvs.fedoraproject.org/repo/pkgs/upload.cgi...
+
+Source upload succeeded. Don't forget to commit the new ./sources file
+M sources
+M .cvsignore
