@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.81
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -126,6 +126,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.81-3
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
+
 * Mon Jun 22 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.81-2
 - split off Test::Moose
 
