@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.81
-Release:        3%{?dist}
+Version:        0.88
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -11,18 +11,21 @@ BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
-BuildRequires:  perl(Class::MOP)         >= 0.85
+BuildRequires:  perl(Carp)
+BuildRequires:  perl(Class::MOP)         >= 0.89
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
 BuildRequires:  perl(Scalar::Util)       >= 1.19
-BuildRequires:  perl(Sub::Exporter)      >= 0.972
+BuildRequires:  perl(Sub::Exporter)      >= 0.980
 BuildRequires:  perl(Sub::Install)       >= 0.92
+BuildRequires:  perl(Sub::Name)
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Test::More)         >= 0.77
 BuildRequires:  perl(Test::Exception)    >= 0.27
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
+
 # optional test #1 (in no particular order)
 # ** moved to author tests
 #BuildRequires:  perl(Test::Pod), perl(Test::Pod::Coverage)
@@ -50,15 +53,20 @@ BuildRequires:  perl(Module::Refresh)
 BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
+Requires:  perl(Carp)
+Requires:  perl(Class::MOP) >= 0.89
+Requires:  perl(Data::OptList)
+Requires:  perl(List::MoreUtils) >= 0.12
+Requires:  perl(Scalar::Util) >= 1.19
+Requires:  perl(Sub::Exporter) >= 0.980
+Requires:  perl(Sub::Name)
+Requires:  perl(Task::Weaken)
+
 # don't "provide" private Perl libs, or bits from _docdir
 %global _use_internal_dependency_generator 0
 %global __deploop() while read FILE; do /usr/lib/rpm/rpmdeps -%{1} ${FILE}; done | /bin/sort -u
 %global __find_provides /bin/sh -c "%{__grep} -v '%_docdir' | %{__grep} -v '%{perl_vendorarch}/.*\\.so$' | %{__deploop P}"
 %global __find_requires /bin/sh -c "%{__grep} -v '%_docdir' | %{__deploop R}"
-
-### auto-added brs!
-BuildRequires:  perl(Sub::Name)
-BuildRequires:  perl(Carp)
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -91,6 +99,7 @@ very welcome.
 # tidy things up...
 find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
 find . -name '*.orig' -exec rm -v {} +
+find . -type f -exec chmod -c -x {} +
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -126,6 +135,19 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon Jul 27 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.88-1
+- auto-update to 0.88 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.85 => 0.89)
+- altered br on perl(Sub::Exporter) (0.972 => 0.980)
+- added a new req on perl(Carp) (version 0)
+- added a new req on perl(Class::MOP) (version 0.89)
+- added a new req on perl(Data::OptList) (version 0)
+- added a new req on perl(List::MoreUtils) (version 0.12)
+- added a new req on perl(Scalar::Util) (version 1.19)
+- added a new req on perl(Sub::Exporter) (version 0.980)
+- added a new req on perl(Sub::Name) (version 0)
+- added a new req on perl(Task::Weaken) (version 0)
+
 * Sun Jul 26 2009 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 0.81-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_12_Mass_Rebuild
 
