@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.88
+Version:        0.89
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -12,7 +12,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.89
+BuildRequires:  perl(Class::MOP)         >= 0.92
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
@@ -54,7 +54,7 @@ BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
 Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.89
+Requires:  perl(Class::MOP) >= 0.92
 Requires:  perl(Data::OptList)
 Requires:  perl(List::MoreUtils) >= 0.12
 Requires:  perl(Scalar::Util) >= 1.19
@@ -135,6 +135,11 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Aug 19 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.89-1
+- auto-update to 0.89 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.89 => 0.92)
+- altered req on perl(Class::MOP) (0.89 => 0.92)
+
 * Mon Jul 27 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.88-1
 - auto-update to 0.88 (by cpan-spec-update 0.01)
 - altered br on perl(Class::MOP) (0.85 => 0.89)
