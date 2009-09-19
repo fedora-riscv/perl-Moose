@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.89
+Version:        0.90
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -12,7 +12,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.92
+BuildRequires:  perl(Class::MOP)         >= 0.93
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
@@ -21,7 +21,7 @@ BuildRequires:  perl(Sub::Exporter)      >= 0.980
 BuildRequires:  perl(Sub::Install)       >= 0.92
 BuildRequires:  perl(Sub::Name)
 BuildRequires:  perl(Task::Weaken)
-BuildRequires:  perl(Test::More)         >= 0.77
+BuildRequires:  perl(Test::More)         >= 0.88
 BuildRequires:  perl(Test::Exception)    >= 0.27
 BuildRequires:  perl(Test::LongString)
 BuildRequires:  perl(UNIVERSAL::require) >= 0.10
@@ -36,6 +36,7 @@ BuildRequires:  perl(DateTime::Format::MySQL)
 BuildRequires:  perl(HTTP::Headers)
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(URI)
+BuildRequires:  perl(Try::Tiny) >= 0.02
 # optional test #4
 # commented out as Locale::US's license is ambiguous at the moment, precluding
 # packaging it.
@@ -54,19 +55,16 @@ BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
 Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.92
+Requires:  perl(Class::MOP) >= 0.93
 Requires:  perl(Data::OptList)
 Requires:  perl(List::MoreUtils) >= 0.12
 Requires:  perl(Scalar::Util) >= 1.19
 Requires:  perl(Sub::Exporter) >= 0.980
 Requires:  perl(Sub::Name)
 Requires:  perl(Task::Weaken)
+Requires:  perl(Try::Tiny) >= 0.02
 
-# don't "provide" private Perl libs, or bits from _docdir
-%global _use_internal_dependency_generator 0
-%global __deploop() while read FILE; do /usr/lib/rpm/rpmdeps -%{1} ${FILE}; done | /bin/sort -u
-%global __find_provides /bin/sh -c "%{__grep} -v '%_docdir' | %{__grep} -v '%{perl_vendorarch}/.*\\.so$' | %{__deploop P}"
-%global __find_requires /bin/sh -c "%{__grep} -v '%_docdir' | %{__deploop R}"
+%{?perl_default_filter}
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -135,6 +133,15 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Sep 18 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.90-1
+- switch filtering systems...
+- auto-update to 0.90 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.92 => 0.93)
+- altered br on perl(Test::More) (0.77 => 0.88)
+- added a new br on perl(Try::Tiny) (version 0.02)
+- altered req on perl(Class::MOP) (0.92 => 0.93)
+- added a new req on perl(Try::Tiny) (version 0.02)
+
 * Wed Aug 19 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.89-1
 - auto-update to 0.89 (by cpan-spec-update 0.01)
 - altered br on perl(Class::MOP) (0.89 => 0.92)
