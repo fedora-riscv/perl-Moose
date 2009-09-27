@@ -1,5 +1,5 @@
 Name:           perl-Moose
-Version:        0.90
+Version:        0.92
 Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
@@ -12,7 +12,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.93
+BuildRequires:  perl(Class::MOP)         >= 0.94
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
@@ -55,7 +55,7 @@ BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
 Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.93
+Requires:  perl(Class::MOP) >= 0.94
 Requires:  perl(Data::OptList)
 Requires:  perl(List::MoreUtils) >= 0.12
 Requires:  perl(Scalar::Util) >= 1.19
@@ -133,6 +133,11 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Sep 27 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.92-1
+- auto-update to 0.92 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.93 => 0.94)
+- altered req on perl(Class::MOP) (0.93 => 0.94)
+
 * Fri Sep 18 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.90-1
 - switch filtering systems...
 - auto-update to 0.90 (by cpan-spec-update 0.01)
