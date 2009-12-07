@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.92
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -133,6 +133,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon Dec  7 2009 Stepan Kasal <skasal@redhat.com> - 0.92-2
+- rebuild against perl 5.10.1
+
 * Sun Sep 27 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.92-1
 - auto-update to 0.92 (by cpan-spec-update 0.01)
 - altered br on perl(Class::MOP) (0.93 => 0.94)
