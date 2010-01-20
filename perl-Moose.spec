@@ -1,6 +1,6 @@
 Name:           perl-Moose
-Version:        0.92
-Release:        2%{?dist}
+Version:        0.94
+Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -12,7 +12,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.94
+BuildRequires:  perl(Class::MOP)         >= 0.98
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(List::MoreUtils)    >= 0.12
@@ -55,7 +55,7 @@ BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
 
 Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.94
+Requires:  perl(Class::MOP) >= 0.98
 Requires:  perl(Data::OptList)
 Requires:  perl(List::MoreUtils) >= 0.12
 Requires:  perl(Scalar::Util) >= 1.19
@@ -133,6 +133,11 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-1
+- auto-update to 0.94 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.94 => 0.98)
+- altered req on perl(Class::MOP) (0.94 => 0.98)
+
 * Mon Dec  7 2009 Stepan Kasal <skasal@redhat.com> - 0.92-2
 - rebuild against perl 5.10.1
 
