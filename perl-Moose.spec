@@ -1,13 +1,12 @@
 Name:           perl-Moose
 Version:        0.94
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 URL:            http://search.cpan.org/dist/Moose/
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
@@ -122,17 +121,20 @@ rm -rf %{buildroot}
 %files
 %defattr(-,root,root,-)
 %doc Changes README doap.rdf t/
-%{perl_vendorlib}/*
-%exclude %{perl_vendorlib}/Test
+%{perl_vendorarch}/*
+%exclude %{perl_vendorarch}/Test
 %{_mandir}/man3/*
 %exclude %{_mandir}/man3/Test::Moose*
 
 %files -n perl-Test-Moose
 %defattr(-,root,root,-)
-%{perl_vendorlib}/Test
+%{perl_vendorarch}/Test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-2
+- we're not noarch anymore :)
+
 * Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-1
 - auto-update to 0.94 (by cpan-spec-update 0.01)
 - altered br on perl(Class::MOP) (0.94 => 0.98)
