@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Version:        0.94
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Complete modern object system for Perl 5
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -52,6 +52,8 @@ BuildRequires:  perl(Module::Refresh)
 # optional tests #9 (as of 0.57)
 BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Test::Output)
+# optional test #10
+BuildRequires:  perl(DateTime::Calendar::Mayan)
 
 Requires:  perl(Carp)
 Requires:  perl(Class::MOP) >= 0.98
@@ -64,6 +66,7 @@ Requires:  perl(Task::Weaken)
 Requires:  perl(Try::Tiny) >= 0.02
 
 %{?perl_default_filter}
+%{?perl_default_subpackage_tests}
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -106,7 +109,7 @@ make %{?_smp_mflags}
 %install
 rm -rf %{buildroot}
 
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install DESTDIR=%{buildroot}
 find %{buildroot} -type f -name .packlist -exec rm -f {} +
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null \;
 
@@ -120,8 +123,9 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc Changes README doap.rdf t/
+%doc Changes README doap.rdf
 %{perl_vendorarch}/*
+%exclude %dir %{perl_vendorarch}/auto/
 %exclude %{perl_vendorarch}/Test
 %{_mandir}/man3/*
 %exclude %{_mandir}/man3/Test::Moose*
@@ -132,6 +136,12 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Feb 05 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-3
+- PERL_INSTALL_ROOT => DESTDIR
+- add perl_default_subpackage_tests
+- properly exclude vendorarch/auto/ directory
+- add br on DateTime::Calendar::Mayan
+
 * Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-2
 - we're not noarch anymore :)
 
