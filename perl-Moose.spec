@@ -1,69 +1,49 @@
 Name:           perl-Moose
-Version:        0.94
-Release:        3%{?dist}
 Summary:        Complete modern object system for Perl 5
+Version:        0.96
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-URL:            http://search.cpan.org/dist/Moose/
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz 
+URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:   perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.98
+BuildRequires:  perl(Class::MOP) >= 0.98
 BuildRequires:  perl(Data::OptList)
-BuildRequires:  perl(Filter::Simple)
-BuildRequires:  perl(List::MoreUtils)    >= 0.12
-BuildRequires:  perl(Scalar::Util)       >= 1.19
-BuildRequires:  perl(Sub::Exporter)      >= 0.980
-BuildRequires:  perl(Sub::Install)       >= 0.92
-BuildRequires:  perl(Sub::Name)
-BuildRequires:  perl(Task::Weaken)
-BuildRequires:  perl(Test::More)         >= 0.88
-BuildRequires:  perl(Test::Exception)    >= 0.27
-BuildRequires:  perl(Test::LongString)
-BuildRequires:  perl(UNIVERSAL::require) >= 0.10
-
-# optional test #1 (in no particular order)
-# ** moved to author tests
-#BuildRequires:  perl(Test::Pod), perl(Test::Pod::Coverage)
-# optional test #2
-BuildRequires:  perl(DBM::Deep) >= 0.983
+BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
-# optional test #3
+BuildRequires:  perl(DBM::Deep) >= 0.983
+BuildRequires:  perl(Declare::Constraints::Simple)
+BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(HTTP::Headers)
-BuildRequires:  perl(Params::Coerce)
-BuildRequires:  perl(URI)
-BuildRequires:  perl(Try::Tiny) >= 0.02
-# optional test #4
-# commented out as Locale::US's license is ambiguous at the moment, precluding
-# packaging it.
-#BuildRequires:  perl(Regexp::Common), perl(Locale::US)
-# optional test #5
 BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
-# optional test #6
-BuildRequires:  perl(Test::Deep)
-# optional test #7
-BuildRequires:  perl(Declare::Constraints::Simple)
-# optional test #8 (as of 0.20)
+BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Module::Refresh)
-# optional tests #9 (as of 0.57)
-BuildRequires:  perl(Test::Warn)
+BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(Scalar::Util) >= 1.19
+BuildRequires:  perl(Sub::Exporter) >= 0.980
+BuildRequires:  perl(Sub::Name)
+BuildRequires:  perl(Task::Weaken)
+BuildRequires:  perl(Test::Deep)
+BuildRequires:  perl(Test::Exception) >= 0.27
+BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Output)
-# optional test #10
-BuildRequires:  perl(DateTime::Calendar::Mayan)
+BuildRequires:  perl(Test::Warn)
+BuildRequires:  perl(Try::Tiny) >= 0.02
+BuildRequires:  perl(URI)
 
-Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.98
-Requires:  perl(Data::OptList)
-Requires:  perl(List::MoreUtils) >= 0.12
-Requires:  perl(Scalar::Util) >= 1.19
-Requires:  perl(Sub::Exporter) >= 0.980
-Requires:  perl(Sub::Name)
-Requires:  perl(Task::Weaken)
-Requires:  perl(Try::Tiny) >= 0.02
+Requires:       perl(Carp)
+Requires:       perl(Class::MOP) >= 0.98
+Requires:       perl(Data::OptList)
+Requires:       perl(List::MoreUtils) >= 0.12
+Requires:       perl(Scalar::Util) >= 1.19
+Requires:       perl(Sub::Exporter) >= 0.980
+Requires:       perl(Sub::Name)
+Requires:       perl(Task::Weaken)
+Requires:       perl(Try::Tiny) >= 0.02
 
 %{?perl_default_filter}
 %{?perl_default_subpackage_tests}
@@ -136,6 +116,13 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Feb 13 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.96-1
+- auto-update by cpan-spec-update 0.002
+- dropped old BR on perl(UNIVERSAL::require)
+- dropped old BR on perl(Sub::Install)
+- dropped old BR on perl(Test::LongString)
+- dropped old BR on perl(Filter::Simple)
+
 * Fri Feb 05 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-3
 - PERL_INSTALL_ROOT => DESTDIR
 - add perl_default_subpackage_tests
