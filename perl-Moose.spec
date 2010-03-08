@@ -1,13 +1,13 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        0.96
+Version:        0.98
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz 
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz 
 URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-Requires:   perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
+Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(Carp)
 BuildRequires:  perl(Class::MOP) >= 0.98
@@ -116,6 +116,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Feb 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.98-1
+- update by Fedora::App::MaintainerTools 0.003
+
 * Sat Feb 13 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.96-1
 - auto-update by cpan-spec-update 0.002
 - dropped old BR on perl(UNIVERSAL::require)
