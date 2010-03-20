@@ -1,10 +1,10 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        0.98
+Version:        0.99
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz 
+Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz 
 URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -45,22 +45,22 @@ Requires:       perl(Sub::Name)
 Requires:       perl(Task::Weaken)
 Requires:       perl(Try::Tiny) >= 0.02
 
+
 %{?perl_default_filter}
 %{?perl_default_subpackage_tests}
 
 %description
 Moose is an extension of the Perl 5 object system.
 
-Moose is built on top of Class::MOP, which is a metaclass system for
-Perl 5. This means that Moose not only makes building normal Perl 5
-objects better, but it also provides the power of metaclass programming.
-such things.  Moose is different from other Perl 5 object systems because
-it is not a new system, but instead an extension of the existing one.
+The main goal of Moose is to make Perl 5 Object Oriented programming easier,
+more consistent and less tedious. With Moose you can to think more about what
+you want to do and less about the mechanics of OOP.
 
-While Moose is very much inspired by Perl 6, it is not itself Perl
-6.  Instead, it is an OO system for Perl 5. I built Moose because I was
-tired or writing the same old boring Perl 5 OO code, and drooling over
-Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
+Additionally, Moose is built on top of Class::MOP, which is a metaclass system
+for Perl 5. This means that Moose not only makes building normal Perl 5
+objects better, but it provides the power of metaclass programming as well.
+Moose is different from other Perl 5 object systems because it is not a new
+system, but instead an extension of the existing one.
 
 %package -n perl-Test-Moose
 License:    GPL+ or Artistic
@@ -76,27 +76,23 @@ very welcome.
 %prep
 %setup -q -n Moose-%{version}
 
-# tidy things up...
-find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
-find . -name '*.orig' -exec rm -v {} +
-find . -type f -exec chmod -c -x {} +
-
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
 make %{?_smp_mflags}
-
 
 %install
 rm -rf %{buildroot}
 
 make pure_install DESTDIR=%{buildroot}
-find %{buildroot} -type f -name .packlist -exec rm -f {} +
-find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null \;
+find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
+find %{buildroot} -type f -name '*.bs' -a -size 0 -exec rm -f {} ';'
+find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 
 %{_fixperms} %{buildroot}/*
 
 %check
 make test
+
 
 %clean
 rm -rf %{buildroot}
@@ -116,6 +112,10 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Mar 12 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.99-1
+- update by Fedora::App::MaintainerTools 0.006
+- updating to latest GA CPAN version (0.99)
+
 * Sat Feb 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.98-1
 - update by Fedora::App::MaintainerTools 0.003
 
