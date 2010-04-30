@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        0.99
+Version:        1.01
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -112,6 +112,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Apr 30 2010 Marclea Mašláňová <mmaslano@redhat.com> 1.01-1
+- update
+
 * Fri Mar 12 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.99-1
 - update by Fedora::App::MaintainerTools 0.006
 - updating to latest GA CPAN version (0.99)
