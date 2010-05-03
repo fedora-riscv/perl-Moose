@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        1.01
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz 
@@ -112,6 +112,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon May 03 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.01-2
+- Mass rebuild with perl-5.12.0
+
 * Fri Apr 30 2010 Marclea Mašláňová <mmaslano@redhat.com> 1.01-1
 - update
 
