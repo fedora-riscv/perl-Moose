@@ -113,7 +113,7 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
-* Mon May 03 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.01-2
+* Mon May 03 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.02-1
 - Mass rebuild with perl-5.12.0
 - switch off tests for meantime, needs Class::ISA
 
