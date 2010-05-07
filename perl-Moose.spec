@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.02
+Version:        1.03
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -92,7 +92,7 @@ find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 %{_fixperms} %{buildroot}/*
 
 %check
-##make test
+make test
 
 
 %clean
@@ -113,6 +113,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri May 07 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.03-1
+- update
+
 * Mon May 03 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.02-1
 - Mass rebuild with perl-5.12.0
 - switch off tests for meantime, needs Class::ISA
