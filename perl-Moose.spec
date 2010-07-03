@@ -1,17 +1,17 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.03
+Version:        1.08
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz 
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(Carp)
 #BuildRequires:  perl(Class::ISA)
-BuildRequires:  perl(Class::MOP) >= 0.98
+BuildRequires:  perl(Class::MOP) >= 1.02
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -113,6 +113,10 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Jul 03 2010 Iain Arnell <iarnell@gmail.com> 1.08-1
+- update to latest upstream
+- update BR perl(Class:MOP) >= 1.02
+
 * Fri May 07 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.03-1
 - update
 
