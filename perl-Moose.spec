@@ -1,84 +1,67 @@
 Name:           perl-Moose
-Version:        0.92
-Release:        1%{?dist}
 Summary:        Complete modern object system for Perl 5
+Version:        1.08
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-URL:            http://search.cpan.org/dist/Moose/
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
+URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildArch:      noarch
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(Carp)
-BuildRequires:  perl(Class::MOP)         >= 0.94
+#BuildRequires:  perl(Class::ISA)
+BuildRequires:  perl(Class::MOP) >= 1.02
 BuildRequires:  perl(Data::OptList)
-BuildRequires:  perl(Filter::Simple)
-BuildRequires:  perl(List::MoreUtils)    >= 0.12
-BuildRequires:  perl(Scalar::Util)       >= 1.19
-BuildRequires:  perl(Sub::Exporter)      >= 0.980
-BuildRequires:  perl(Sub::Install)       >= 0.92
-BuildRequires:  perl(Sub::Name)
-BuildRequires:  perl(Task::Weaken)
-BuildRequires:  perl(Test::More)         >= 0.88
-BuildRequires:  perl(Test::Exception)    >= 0.27
-BuildRequires:  perl(Test::LongString)
-BuildRequires:  perl(UNIVERSAL::require) >= 0.10
-
-# optional test #1 (in no particular order)
-# ** moved to author tests
-#BuildRequires:  perl(Test::Pod), perl(Test::Pod::Coverage)
-# optional test #2
-BuildRequires:  perl(DBM::Deep) >= 0.983
+BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
-# optional test #3
+BuildRequires:  perl(DBM::Deep) >= 0.983
+BuildRequires:  perl(Declare::Constraints::Simple)
+BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
 BuildRequires:  perl(HTTP::Headers)
-BuildRequires:  perl(Params::Coerce)
-BuildRequires:  perl(URI)
-BuildRequires:  perl(Try::Tiny) >= 0.02
-# optional test #4
-# commented out as Locale::US's license is ambiguous at the moment, precluding
-# packaging it.
-#BuildRequires:  perl(Regexp::Common), perl(Locale::US)
-# optional test #5
 BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
-# optional test #6
-BuildRequires:  perl(Test::Deep)
-# optional test #7
-BuildRequires:  perl(Declare::Constraints::Simple)
-# optional test #8 (as of 0.20)
+BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Module::Refresh)
-# optional tests #9 (as of 0.57)
-BuildRequires:  perl(Test::Warn)
+BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(Scalar::Util) >= 1.19
+BuildRequires:  perl(Sub::Exporter) >= 0.980
+BuildRequires:  perl(Sub::Name)
+BuildRequires:  perl(Task::Weaken)
+BuildRequires:  perl(Test::Deep)
+BuildRequires:  perl(Test::Exception) >= 0.27
+BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Output)
+BuildRequires:  perl(Test::Warn)
+BuildRequires:  perl(Try::Tiny) >= 0.02
+BuildRequires:  perl(URI)
 
-Requires:  perl(Carp)
-Requires:  perl(Class::MOP) >= 0.94
-Requires:  perl(Data::OptList)
-Requires:  perl(List::MoreUtils) >= 0.12
-Requires:  perl(Scalar::Util) >= 1.19
-Requires:  perl(Sub::Exporter) >= 0.980
-Requires:  perl(Sub::Name)
-Requires:  perl(Task::Weaken)
-Requires:  perl(Try::Tiny) >= 0.02
+Requires:       perl(Carp)
+Requires:       perl(Class::MOP) >= 0.98
+Requires:       perl(Data::OptList)
+Requires:       perl(List::MoreUtils) >= 0.12
+Requires:       perl(Scalar::Util) >= 1.19
+Requires:       perl(Sub::Exporter) >= 0.980
+Requires:       perl(Sub::Name)
+Requires:       perl(Task::Weaken)
+Requires:       perl(Try::Tiny) >= 0.02
+
 
 %{?perl_default_filter}
+%{?perl_default_subpackage_tests}
 
 %description
 Moose is an extension of the Perl 5 object system.
 
-Moose is built on top of Class::MOP, which is a metaclass system for
-Perl 5. This means that Moose not only makes building normal Perl 5
-objects better, but it also provides the power of metaclass programming.
-such things.  Moose is different from other Perl 5 object systems because
-it is not a new system, but instead an extension of the existing one.
+The main goal of Moose is to make Perl 5 Object Oriented programming easier,
+more consistent and less tedious. With Moose you can to think more about what
+you want to do and less about the mechanics of OOP.
 
-While Moose is very much inspired by Perl 6, it is not itself Perl
-6.  Instead, it is an OO system for Perl 5. I built Moose because I was
-tired or writing the same old boring Perl 5 OO code, and drooling over
-Perl 6 OO. So instead of switching to Ruby, I wrote Moose :)
+Additionally, Moose is built on top of Class::MOP, which is a metaclass system
+for Perl 5. This means that Moose not only makes building normal Perl 5
+objects better, but it provides the power of metaclass programming as well.
+Moose is different from other Perl 5 object systems because it is not a new
+system, but instead an extension of the existing one.
 
 %package -n perl-Test-Moose
 License:    GPL+ or Artistic
@@ -94,45 +77,87 @@ very welcome.
 %prep
 %setup -q -n Moose-%{version}
 
-# tidy things up...
-find t/ -type f -exec perl -pi -e 's|^#!/usr/local/bin|#!/usr/bin|' {} +
-find . -name '*.orig' -exec rm -v {} +
-find . -type f -exec chmod -c -x {} +
-
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor
+%{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
 make %{?_smp_mflags}
-
 
 %install
 rm -rf %{buildroot}
 
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
-find %{buildroot} -type f -name .packlist -exec rm -f {} +
-find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null \;
+make pure_install DESTDIR=%{buildroot}
+find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
+find %{buildroot} -type f -name '*.bs' -a -size 0 -exec rm -f {} ';'
+find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 
 %{_fixperms} %{buildroot}/*
 
 %check
 make test
 
+
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
-%doc Changes README doap.rdf t/
-%{perl_vendorlib}/*
-%exclude %{perl_vendorlib}/Test
+%doc Changes README doap.rdf
+%{perl_vendorarch}/*
+%exclude %dir %{perl_vendorarch}/auto/
+%exclude %{perl_vendorarch}/Test
 %{_mandir}/man3/*
 %exclude %{_mandir}/man3/Test::Moose*
 
 %files -n perl-Test-Moose
 %defattr(-,root,root,-)
-%{perl_vendorlib}/Test
+%{perl_vendorarch}/Test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Jul 03 2010 Iain Arnell <iarnell@gmail.com> 1.08-1
+- update to latest upstream
+- update BR perl(Class:MOP) >= 1.02
+
+* Fri May 07 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.03-1
+- update
+
+* Mon May 03 2010 Marcela Maslanova <mmaslano@redhat.com> - 1.02-1
+- Mass rebuild with perl-5.12.0
+- switch off tests for meantime, needs Class::ISA
+
+* Fri Apr 30 2010 Marclea Mašláňová <mmaslano@redhat.com> 1.01-1
+- update
+
+* Fri Mar 12 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.99-1
+- update by Fedora::App::MaintainerTools 0.006
+- updating to latest GA CPAN version (0.99)
+
+* Sat Feb 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.98-1
+- update by Fedora::App::MaintainerTools 0.003
+
+* Sat Feb 13 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.96-1
+- auto-update by cpan-spec-update 0.002
+- dropped old BR on perl(UNIVERSAL::require)
+- dropped old BR on perl(Sub::Install)
+- dropped old BR on perl(Test::LongString)
+- dropped old BR on perl(Filter::Simple)
+
+* Fri Feb 05 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-3
+- PERL_INSTALL_ROOT => DESTDIR
+- add perl_default_subpackage_tests
+- properly exclude vendorarch/auto/ directory
+- add br on DateTime::Calendar::Mayan
+
+* Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-2
+- we're not noarch anymore :)
+
+* Wed Jan 20 2010 Chris Weyl <cweyl@alumni.drew.edu> 0.94-1
+- auto-update to 0.94 (by cpan-spec-update 0.01)
+- altered br on perl(Class::MOP) (0.94 => 0.98)
+- altered req on perl(Class::MOP) (0.94 => 0.98)
+
+* Mon Dec  7 2009 Stepan Kasal <skasal@redhat.com> - 0.92-2
+- rebuild against perl 5.10.1
+
 * Sun Sep 27 2009 Chris Weyl <cweyl@alumni.drew.edu> 0.92-1
 - auto-update to 0.92 (by cpan-spec-update 0.01)
 - altered br on perl(Class::MOP) (0.93 => 0.94)
