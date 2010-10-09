@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.14
+Version:        1.15
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -11,7 +11,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(Carp)
 #BuildRequires:  perl(Class::ISA)
-BuildRequires:  perl(Class::MOP) >= 1.05
+BuildRequires:  perl(Class::MOP) >= 1.09
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -25,6 +25,7 @@ BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Module::Refresh)
 BuildRequires:  perl(Package::DeprecationManager) >= 0.04
 BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(Params::Util)
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
 BuildRequires:  perl(Sub::Name)
@@ -111,6 +112,11 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Oct 09 2010 Iain Arnell <iarnell@gmail.com> 1.15-1
+- update to latest upstream version
+- update BR perl(Class::MOP) >= 1.09
+- new BR perl(Params:Util)
+
 * Tue Oct 05 2010 Iain Arnell <iarnell@gmail.com> 1.14-1
 - update to latest upstream version
 - update BR perl(Class:MOP) >= 1.05
