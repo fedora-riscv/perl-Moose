@@ -1,17 +1,17 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.08
+Version:        1.12
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 BuildRequires:  perl(Carp)
 #BuildRequires:  perl(Class::ISA)
-BuildRequires:  perl(Class::MOP) >= 1.02
+BuildRequires:  perl(Class::MOP) >= 1.05
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -23,6 +23,7 @@ BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
 BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Module::Refresh)
+BuildRequires:  perl(Package::DeprecationManager) >= 0.04
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
@@ -32,12 +33,13 @@ BuildRequires:  perl(Test::Deep)
 BuildRequires:  perl(Test::Exception) >= 0.27
 BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Output)
+BuildRequires:  perl(Test::Requires) >= 0.05
 BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Try::Tiny) >= 0.02
 BuildRequires:  perl(URI)
 
 Requires:       perl(Carp)
-Requires:       perl(Class::MOP) >= 0.98
+Requires:       perl(Class::MOP) >= 1.05
 Requires:       perl(Data::OptList)
 Requires:       perl(List::MoreUtils) >= 0.12
 Requires:       perl(Scalar::Util) >= 1.19
@@ -113,6 +115,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Nov 13 2010 Iain Arnell <iarnell@gmail.com> 1.12-1
+- update to 1.12
+
 * Sat Jul 03 2010 Iain Arnell <iarnell@gmail.com> 1.08-1
 - update to latest upstream
 - update BR perl(Class:MOP) >= 1.02
