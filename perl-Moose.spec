@@ -1,10 +1,11 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        1.12
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Patch0:         0001-Fix-weird-bug-that-is-probably-a-bug-in-List-MoreUti.patch
 URL:            http://search.cpan.org/dist/
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
@@ -78,6 +79,7 @@ very welcome.
 
 %prep
 %setup -q -n Moose-%{version}
+%patch0 -p 1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
@@ -115,6 +117,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Dec 01 2010 Iain Arnell <iarnell@gmail.com> 1.12-2
+- apply upstream fix for RHBZ #658453
+
 * Sat Nov 13 2010 Iain Arnell <iarnell@gmail.com> 1.12-1
 - update to 1.12
 

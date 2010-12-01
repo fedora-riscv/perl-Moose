@@ -1,0 +1,35 @@
+From f1fc0e095eeb517241d64511892f2c9a5f805b56 Mon Sep 17 00:00:00 2001
+From: Dave Rolsky <autarch@urth.org>
+Date: Tue, 14 Sep 2010 11:18:09 -0500
+Subject: [PATCH] Fix weird bug that is probably a bug in List::MoreUtils
+
+---
+ lib/Moose/Meta/TypeConstraint/Union.pm |    5 +++--
+ 1 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/lib/Moose/Meta/TypeConstraint/Union.pm b/lib/Moose/Meta/TypeConstraint/Union.pm
+index 8136d04..0af99a3 100644
+--- a/lib/Moose/Meta/TypeConstraint/Union.pm
++++ b/lib/Moose/Meta/TypeConstraint/Union.pm
+@@ -7,7 +7,6 @@ use metaclass;
+ 
+ use Moose::Meta::TypeCoercion::Union;
+ 
+-use List::MoreUtils qw(any);
+ use List::Util qw(first);
+ 
+ our $VERSION   = '1.12';
+@@ -46,7 +45,9 @@ sub coercion {
+ 
+     return $self->{coercion} if exists $self->{coercion};
+ 
+-    if ( any { $_->has_coercion } @{ $self->type_constraints } ) {
++    # Using any instead of grep here causes a weird error with some corner
++    # cases when MX::Types is in use. See RT #61001.
++    if ( grep { $_->has_coercion } @{ $self->type_constraints } ) {
+         return $self->{coercion} = Moose::Meta::TypeCoercion::Union->new(
+             type_constraint => $self );
+     }
+-- 
+1.7.2.3
+
