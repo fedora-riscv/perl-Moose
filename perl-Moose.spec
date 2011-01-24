@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.15
+Version:        1.21
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -11,7 +11,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 BuildRequires:  perl(Carp)
 #BuildRequires:  perl(Class::ISA)
-BuildRequires:  perl(Class::MOP) >= 1.09
+BuildRequires:  perl(Class::MOP) >= 1.11
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -23,15 +23,15 @@ BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
 BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Module::Refresh)
-BuildRequires:  perl(Package::DeprecationManager) >= 0.04
+BuildRequires:  perl(Package::DeprecationManager) >= 0.10
 BuildRequires:  perl(Params::Coerce)
-BuildRequires:  perl(Params::Util)
+BuildRequires:  perl(Params::Util) >= 1.00
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
 BuildRequires:  perl(Sub::Name)
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Test::Deep)
-BuildRequires:  perl(Test::Exception) >= 0.27
+BuildRequires:  perl(Test::Fatal) >= 0.001
 BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Output)
 BuildRequires:  perl(Test::Requires) >= 0.05
@@ -39,8 +39,10 @@ BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Try::Tiny) >= 0.02
 BuildRequires:  perl(URI)
 
+Requires:       perl(Class::MOP) >= 1.11
 Requires:       perl(List::MoreUtils) >= 0.12
-Requires:       perl(Package::DeprecationManager) >= 0.04
+Requires:       perl(Package::DeprecationManager) >= 0.10
+Requires:       perl(Params::Util) >= 1.00
 Requires:       perl(Scalar::Util) >= 1.19
 Requires:       perl(Task::Weaken)
 Requires:       perl(Try::Tiny) >= 0.02
@@ -112,6 +114,14 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon Jan 24 2011 Iain Arnell <iarnell@gmail.com> 1.21-1
+- update to latest upstream version
+- update R/BR perl(Class::MOP) >= 1.11
+- update R/BR perl(Params::Util) >= 1.00
+- update R/BR perl(Package::DeprecationManager) >= 0.10
+- new BR perl(Test::Fatal) >= 0.001
+- drop old BR perl(Test::Exception)
+
 * Sat Oct 09 2010 Iain Arnell <iarnell@gmail.com> 1.15-1
 - update to latest upstream version
 - update BR perl(Class::MOP) >= 1.09
