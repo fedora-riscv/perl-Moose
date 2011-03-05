@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.23
+Version:        1.24
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -114,6 +114,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Mar 05 2011 Iain Arnell <iarnell@gmail.com> 1.24-1
+- update to latest upstream version
+
 * Thu Feb 17 2011 Iain Arnell <iarnell@gmail.com> 1.23-1
 - update to latest upstream version
 
