@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.24
+Version:        1.25
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -22,6 +22,7 @@ BuildRequires:  perl(HTTP::Headers)
 BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
 BuildRequires:  perl(List::MoreUtils) >= 0.12
+BuildRequires:  perl(Locale::US)
 BuildRequires:  perl(Module::Refresh)
 BuildRequires:  perl(Package::DeprecationManager) >= 0.10
 BuildRequires:  perl(Params::Coerce)
@@ -114,6 +115,9 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Apr 03 2011 Iain Arnell <iarnell@gmail.com> 1.25-1
+- update to latest upstream version
+
 * Sat Mar 05 2011 Iain Arnell <iarnell@gmail.com> 1.24-1
 - update to latest upstream version
 
