@@ -1,56 +1,107 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        1.25
+Version:        2.0000
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DR/DROLSKY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
-BuildRequires:  perl(Carp)
-#BuildRequires:  perl(Class::ISA)
-BuildRequires:  perl(Class::MOP) >= 1.11
-BuildRequires:  perl(Data::OptList)
+# Class::MOP is now included in Moose itself
+Obsoletes:      perl-Class-MOP <= 1.12-2.fc15
+
+# configure
+BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
+BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.31
+
+# develop
+BuildRequires:  perl(Algorithm::C3)
+# our version is too old
+#BuildRequires:  perl(DBM::Deep) >= 1.0003
+BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
-BuildRequires:  perl(DBM::Deep) >= 0.983
 BuildRequires:  perl(Declare::Constraints::Simple)
-BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.42
+BuildRequires:  perl(File::Find::Rule)
 BuildRequires:  perl(HTTP::Headers)
 BuildRequires:  perl(IO::File)
 BuildRequires:  perl(IO::String)
-BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(Locale::US)
+BuildRequires:  perl(Module::Info)
 BuildRequires:  perl(Module::Refresh)
-BuildRequires:  perl(Package::DeprecationManager) >= 0.10
 BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(Regexp::Common)
+BuildRequires:  perl(Test::Deep)
+# author test - we almost certainly don't want this in mock!
+#BuildRequires:  perl(Test::DependentModules)
+BuildRequires:  perl(Test::Inline)
+BuildRequires:  perl(Test::LeakTrace)
+BuildRequires:  perl(Test::Output)
+BuildRequires:  perl(URI)
+# not decalared in META.json
+BuildRequires:  perl(SUPER) >= 1.10
+
+# test
+BuildRequires:  perl(Test::Fatal) >= 0.001
+BuildRequires:  perl(Test::More) >= 0.88
+BuildRequires:  perl(Test::Requires) >= 0.05
+
+# runtime
+BuildRequires:  perl(Data::OptList)
+BuildRequires:  perl(Devel::GlobalDestruction)
+BuildRequires:  perl(Eval::Closure)
+BuildRequires:  perl(List::MoreUtils) >= 0.12
+BuildRequires:  perl(MRO::Compat) >= 0.05
+BuildRequires:  perl(Package::DeprecationManager) >= 0.10
+BuildRequires:  perl(Package::Stash) >= 0.21
+BuildRequires:  perl(Package::Stash::XS) >= 0.18
 BuildRequires:  perl(Params::Util) >= 1.00
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
-BuildRequires:  perl(Sub::Name)
+BuildRequires:  perl(Sub::Name) >= 0.05
 BuildRequires:  perl(Task::Weaken)
-BuildRequires:  perl(Test::Deep)
-BuildRequires:  perl(Test::Fatal) >= 0.001
-BuildRequires:  perl(Test::More) >= 0.88
-BuildRequires:  perl(Test::Output)
-BuildRequires:  perl(Test::Requires) >= 0.05
-BuildRequires:  perl(Test::Warn)
 BuildRequires:  perl(Try::Tiny) >= 0.02
-BuildRequires:  perl(URI)
 
-Requires:       perl(Class::MOP) >= 1.11
-Requires:       perl(List::MoreUtils) >= 0.12
-Requires:       perl(Package::DeprecationManager) >= 0.10
-Requires:       perl(Params::Util) >= 1.00
-Requires:       perl(Scalar::Util) >= 1.19
-Requires:       perl(Task::Weaken)
-Requires:       perl(Try::Tiny) >= 0.02
+# develop
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Algorithm::C3)}
+# our version is too old
+#                                                            perl(DBM::Deep) >= 1.0003
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Calendar::Mayan)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Format::MySQL)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Declare::Constraints::Simple)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(File::Find::Rule)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(HTTP::Headers)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(IO::File)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(IO::String)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Locale::US)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Info)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Refresh)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Params::Coerce)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Regexp::Common)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Deep)}
+# author test - and not in fedora yet
+#                                                            perl(Test::DependentModules)
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Inline)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::LeakTrace)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Output)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(URI)}
+# not decalared in META.json
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(SUPER) >= 1.10}
+
+# test
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Fatal) >= 0.001}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::More) >= 0.88}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Requires) >= 0.05}
+
+
+# hidden from PAUSE
+Provides:       perl(Moose::Conflicts)
 
 
 %{?perl_default_filter}
-%{?perl_default_subpackage_tests}
+%{?perl_default_subpackage_tests:%perl_subpackage_tests t/ benchmark/}
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -84,8 +135,6 @@ very welcome.
 make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
-
 make pure_install DESTDIR=%{buildroot}
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -type f -name '*.bs' -a -size 0 -exec rm -f {} ';'
@@ -97,16 +146,14 @@ find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
 make test
 
 
-%clean
-rm -rf %{buildroot}
-
 %files
 %defattr(-,root,root,-)
-%doc Changes README doap.rdf
+%doc Changes Changes.Class-MOP LICENSE README TODO doap.rdf
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
-%exclude %{perl_vendorarch}/Test
 %{_mandir}/man3/*
+%{_bindir}/moose-outdated
+%exclude %{perl_vendorarch}/Test
 %exclude %{_mandir}/man3/Test::Moose*
 
 %files -n perl-Test-Moose
@@ -115,6 +162,12 @@ rm -rf %{buildroot}
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Apr 22 2011 Iain Arnell <iarnell@gmail.com> 2.00-1
+- update to latest upstream version
+- regenerate BuildRequires from META.json
+- obsoletes perl-Class-MOP (now incluced in Moose itself)
+- clean up spec for modern rpmbuild
+
 * Sun Apr 03 2011 Iain Arnell <iarnell@gmail.com> 1.25-1
 - update to latest upstream version
 
