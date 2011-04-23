@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0001
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -10,6 +10,7 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 # Class::MOP is now included in Moose itself
 Obsoletes:      perl-Class-MOP <= 1.12-2.fc15
+Obsoletes:      perl-Class-MOP-tests <= 1.12-2.fc15
 
 # configure
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
@@ -162,6 +163,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Apr 23 2011 Iain Arnell <iarnell@gmail.com> 2.0001-2
+- obsolete perl-Class-MOP-tests too
+
 * Sat Apr 23 2011 Iain Arnell <iarnell@gmail.com> 2.0001-1
 - update to latest upstream version
 
