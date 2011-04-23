@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0000
+Version:        2.0001
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -34,7 +34,7 @@ BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Test::Deep)
 # author test - we almost certainly don't want this in mock!
-#BuildRequires:  perl(Test::DependentModules)
+#BuildRequires:  perl(Test::DependentModules) >= 0.09
 BuildRequires:  perl(Test::Inline)
 BuildRequires:  perl(Test::LeakTrace)
 BuildRequires:  perl(Test::Output)
@@ -50,7 +50,7 @@ BuildRequires:  perl(Test::Requires) >= 0.05
 # runtime
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Devel::GlobalDestruction)
-BuildRequires:  perl(Eval::Closure)
+BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(MRO::Compat) >= 0.05
 BuildRequires:  perl(Package::DeprecationManager) >= 0.10
@@ -82,7 +82,7 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Regexp::Common)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Deep)}
 # author test - and not in fedora yet
-#                                                            perl(Test::DependentModules)
+#                                                            perl(Test::DependentModules) >= 0.09
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Inline)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::LeakTrace)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Output)}
@@ -162,6 +162,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Apr 23 2011 Iain Arnell <iarnell@gmail.com> 2.0001-1
+- update to latest upstream version
+
 * Fri Apr 22 2011 Iain Arnell <iarnell@gmail.com> 2.00-1
 - update to latest upstream version
 - regenerate BuildRequires from META.json
