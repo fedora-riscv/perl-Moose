@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0001
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -97,6 +97,8 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Requires) >= 0.05}
 
 
+Requires:       perl(Dist::CheckConflicts) >= 0.02
+
 # hidden from PAUSE
 Provides:       perl(Moose::Conflicts)
 
@@ -163,6 +165,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Apr 26 2011 Iain Arnell <iarnell@gmail.com> 2.0001-3
+- add explicit perl(Dist::CheckConflicts) requirement
+
 * Sat Apr 23 2011 Iain Arnell <iarnell@gmail.com> 2.0001-2
 - obsolete perl-Class-MOP-tests too
 
