@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0002
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -51,7 +51,6 @@ BuildRequires:  perl(Test::Requires) >= 0.05
 # runtime
 BuildRequires:  perl(Data::OptList)
 BuildRequires:  perl(Devel::GlobalDestruction)
-BuildRequires:  perl(Devel::PartialDump) >= 0.14
 BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(List::MoreUtils) >= 0.12
 BuildRequires:  perl(MRO::Compat) >= 0.05
@@ -166,6 +165,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue May 03 2011 Iain Arnell <iarnell@gmail.com> 2.0002-2
+- drop unnecessary BR perl(Devel::PartialDump)
+
 * Tue May 03 2011 Iain Arnell <iarnell@gmail.com> 2.0002-1
 - update to latest upstream version
 
