@@ -1,10 +1,10 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0002
-Release:        2%{?dist}
+Version:        2.0007
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -49,7 +49,7 @@ BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Requires) >= 0.05
 
 # runtime
-BuildRequires:  perl(Data::OptList)
+BuildRequires:  perl(Data::OptList) >= 0.107
 BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(List::MoreUtils) >= 0.12
@@ -97,6 +97,7 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Requires) >= 0.05}
 
 
+Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
 
 # hidden from PAUSE
@@ -150,7 +151,6 @@ make test
 
 
 %files
-%defattr(-,root,root,-)
 %doc Changes Changes.Class-MOP LICENSE README TODO doap.rdf
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
@@ -160,11 +160,13 @@ make test
 %exclude %{_mandir}/man3/Test::Moose*
 
 %files -n perl-Test-Moose
-%defattr(-,root,root,-)
 %{perl_vendorarch}/Test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri May 20 2011 Iain Arnell <iarnell@gmail.com> 2.0007-1
+- update to latest upstream version
+
 * Tue May 03 2011 Iain Arnell <iarnell@gmail.com> 2.0002-2
 - drop unnecessary BR perl(Devel::PartialDump)
 
