@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0010
-Release:        2%{?dist}
+Version:        2.0202
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -52,9 +52,9 @@ BuildRequires:  perl(Test::Requires) >= 0.05
 BuildRequires:  perl(Data::OptList) >= 0.107
 BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Eval::Closure) >= 0.04
-BuildRequires:  perl(List::MoreUtils) >= 0.12
+BuildRequires:  perl(List::MoreUtils) >= 0.28
 BuildRequires:  perl(MRO::Compat) >= 0.05
-BuildRequires:  perl(Package::DeprecationManager) >= 0.10
+BuildRequires:  perl(Package::DeprecationManager) >= 0.11
 BuildRequires:  perl(Package::Stash) >= 0.21
 BuildRequires:  perl(Package::Stash::XS) >= 0.18
 BuildRequires:  perl(Params::Util) >= 1.00
@@ -102,6 +102,7 @@ Requires:       perl(Dist::CheckConflicts) >= 0.02
 
 # hidden from PAUSE
 Provides:       perl(Moose::Conflicts)
+Provides:       perl(Moose::Error::Util)
 
 
 %{?perl_default_filter}
@@ -164,6 +165,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Jul 30 2011 Iain Arnell <iarnell@gmail.com> 2.0202-1
+- update to latest upstream version
+
 * Wed Jul 20 2011 Petr Sabata <contyk@redhat.com> - 2.0010-2
 - Perl mass rebuild
 
