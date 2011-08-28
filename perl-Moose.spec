@@ -1,10 +1,10 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0202
+Version:        2.0204
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -18,8 +18,8 @@ BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.30
 
 # develop
 BuildRequires:  perl(Algorithm::C3)
-# our version is too old
-#BuildRequires:  perl(DBM::Deep) >= 1.0003
+BuildRequires:  perl(DBM::Deep) >= 1.0003
+BuildRequires:  perl(Data::Visitor)
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -31,6 +31,7 @@ BuildRequires:  perl(IO::String)
 BuildRequires:  perl(Locale::US)
 BuildRequires:  perl(Module::Info)
 BuildRequires:  perl(Module::Refresh)
+BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Test::Deep)
@@ -63,11 +64,13 @@ BuildRequires:  perl(Sub::Exporter) >= 0.980
 BuildRequires:  perl(Sub::Name) >= 0.05
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Try::Tiny) >= 0.02
+# recommended
+BuildRequires:  perl(Devel::PartialDump) >= 0.14
 
 # develop
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Algorithm::C3)}
-# our version is too old
-#                                                            perl(DBM::Deep) >= 1.0003
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DBM::Deep) >= 1.0003}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Data::Visitor)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Calendar::Mayan)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Format::MySQL)}
@@ -79,6 +82,7 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Locale::US)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Info)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Refresh)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(PadWalker)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Params::Coerce)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Regexp::Common)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Deep)}
@@ -96,13 +100,20 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::More) >= 0.88}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Requires) >= 0.05}
 
+# runtime recommends
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Devel::PartialDump) >= 0.14}
+
 
 Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
 
+# recommended
+Requires:       perl(Devel::PartialDump) >= 0.14
+
 # hidden from PAUSE
 Provides:       perl(Moose::Conflicts)
 Provides:       perl(Moose::Error::Util)
+
 
 
 %{?perl_default_filter}
@@ -165,6 +176,10 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Aug 28 2011 Iain Arnell <iarnell@gmail.com> 2.0204-1
+- update to latest upstream version
+- additional build/test dependencies for more testing
+
 * Sat Jul 30 2011 Iain Arnell <iarnell@gmail.com> 2.0202-1
 - update to latest upstream version
 
