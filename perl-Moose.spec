@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0204
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
@@ -42,6 +42,8 @@ BuildRequires:  perl(Test::LeakTrace)
 BuildRequires:  perl(Test::Output)
 BuildRequires:  perl(URI)
 # not decalared in META.json
+BuildRequires:  perl(Carp)
+BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
 
 # test
@@ -176,6 +178,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Sep 13 2011 Petr Pisar <ppisar@redhat.com> - 2.0204-2
+- Build-require Carp because Carp dual-lives now (bug #736768)
+
 * Sun Aug 28 2011 Iain Arnell <iarnell@gmail.com> 2.0204-1
 - update to latest upstream version
 - additional build/test dependencies for more testing
