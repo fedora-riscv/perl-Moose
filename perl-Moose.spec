@@ -1,10 +1,10 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0204
-Release:        2%{?dist}
+Version:        2.0205
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/F/FL/FLORA/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -178,6 +178,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Oct 01 2011 Iain Arnell <iarnell@gmail.com> 2.0205-1
+- update to latest upstream version
+
 * Tue Sep 13 2011 Petr Pisar <ppisar@redhat.com> - 2.0204-2
 - Build-require Carp because Carp dual-lives now (bug #736768)
 
