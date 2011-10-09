@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0205
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -116,6 +116,8 @@ Requires:       perl(Devel::PartialDump) >= 0.14
 Provides:       perl(Moose::Conflicts)
 Provides:       perl(Moose::Error::Util)
 
+# virtual provides for perl-Any-Moose
+Provides:       perl(Any-Moose) = %{version}
 
 
 %{?perl_default_filter}
@@ -178,6 +180,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Oct 09 2011 Iain Arnell <iarnell@gmail.com> 2.0205-2
+- add virtual provides for perl-Any-Moose
+
 * Sat Oct 01 2011 Iain Arnell <iarnell@gmail.com> 2.0205-1
 - update to latest upstream version
 
