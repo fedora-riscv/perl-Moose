@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0205
-Release:        2%{?dist}
+Version:        2.0401
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -36,10 +36,11 @@ BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Test::Deep)
 # author test - we almost certainly don't want this in mock!
-#BuildRequires:  perl(Test::DependentModules) >= 0.09
+#BuildRequires:  perl(Test::DependentModules) >= 0.12
 BuildRequires:  perl(Test::Inline)
 BuildRequires:  perl(Test::LeakTrace)
 BuildRequires:  perl(Test::Output)
+BuildRequires:  perl(Test::Spelling)
 BuildRequires:  perl(URI)
 # not decalared in META.json
 BuildRequires:  perl(Carp)
@@ -52,14 +53,16 @@ BuildRequires:  perl(Test::More) >= 0.88
 BuildRequires:  perl(Test::Requires) >= 0.05
 
 # runtime
+BuildRequires:  perl(Class::Load) >= 0.09
+BuildRequires:  perl(Class::Load::XS) >= 0.01
 BuildRequires:  perl(Data::OptList) >= 0.107
 BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(List::MoreUtils) >= 0.28
 BuildRequires:  perl(MRO::Compat) >= 0.05
 BuildRequires:  perl(Package::DeprecationManager) >= 0.11
-BuildRequires:  perl(Package::Stash) >= 0.21
-BuildRequires:  perl(Package::Stash::XS) >= 0.18
+BuildRequires:  perl(Package::Stash) >= 0.32
+BuildRequires:  perl(Package::Stash::XS) >= 0.24
 BuildRequires:  perl(Params::Util) >= 1.00
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
@@ -89,10 +92,11 @@ BuildRequires:  perl(Devel::PartialDump) >= 0.14
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Regexp::Common)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Deep)}
 # author test - and not in fedora yet
-#                                                            perl(Test::DependentModules) >= 0.09
+#                                                            perl(Test::DependentModules) >= 0.12
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Inline)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::LeakTrace)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Output)}
+%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Spelling)}
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(URI)}
 # not decalared in META.json
 %{?tests_subpackage_requires:%tests_subpackage_requires      perl(SUPER) >= 1.10}
@@ -180,6 +184,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Thu Jan 12 2012 Iain Arnell <iarnell@gmail.com> 2.0401-1
+- update to latest upstream version
+
 * Sun Oct 09 2011 Iain Arnell <iarnell@gmail.com> 2.0205-2
 - add virtual provides for perl-Any-Moose
 
