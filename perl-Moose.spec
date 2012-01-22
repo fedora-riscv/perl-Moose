@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0401
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -72,43 +72,6 @@ BuildRequires:  perl(Try::Tiny) >= 0.02
 # recommended
 BuildRequires:  perl(Devel::PartialDump) >= 0.14
 
-# develop
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Algorithm::C3)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DBM::Deep) >= 1.0003}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Data::Visitor)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Calendar::Mayan)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(DateTime::Format::MySQL)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Declare::Constraints::Simple)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(File::Find::Rule)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(HTTP::Headers)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(IO::File)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(IO::String)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Locale::US)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Info)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Module::Refresh)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(PadWalker)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Params::Coerce)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Regexp::Common)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Deep)}
-# author test - and not in fedora yet
-#                                                            perl(Test::DependentModules) >= 0.12
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Inline)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::LeakTrace)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Output)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Spelling)}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(URI)}
-# not decalared in META.json
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(SUPER) >= 1.10}
-
-# test
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Fatal) >= 0.001}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::More) >= 0.88}
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Test::Requires) >= 0.05}
-
-# runtime recommends
-%{?tests_subpackage_requires:%tests_subpackage_requires      perl(Devel::PartialDump) >= 0.14}
-
 
 Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
@@ -123,9 +86,12 @@ Provides:       perl(Moose::Error::Util)
 # virtual provides for perl-Any-Moose
 Provides:       perl(Any-Moose) = %{version}
 
+# obsolete/provide old tests subpackage
+# can be removed during F19 development cycle
+Obsoletes:      %{name}-tests < 2.0401-2
+Provides:       %{name}-tests = %{version}-%{release}
 
 %{?perl_default_filter}
-%{?perl_default_subpackage_tests:%perl_subpackage_tests t/ benchmark/}
 
 %description
 Moose is an extension of the Perl 5 object system.
@@ -154,6 +120,12 @@ very welcome.
 %prep
 %setup -q -n Moose-%{version}
 
+# silence rpmlint warnings
+find benchmarks/ -type f -name '*.pl' -print0 \
+  | xargs -0 sed -i '1s,#!.*perl,#!%{__perl},'
+find t/ -type f -name '*.t' -print0 \
+  | xargs -0 sed -i '1s,#!.*perl,#!%{__perl},'
+
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
 make %{?_smp_mflags}
@@ -172,6 +144,7 @@ make test
 
 %files
 %doc Changes Changes.Class-MOP LICENSE README TODO doap.rdf
+%doc t/ benchmarks/
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
 %{_mandir}/man3/*
@@ -184,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Jan 22 2012 Iain Arnell <iarnell@gmail.com> 2.0401-2
+- drop tests subpackage; move tests to main package documentation
+
 * Thu Jan 12 2012 Iain Arnell <iarnell@gmail.com> 2.0401-1
 - update to latest upstream version
 
