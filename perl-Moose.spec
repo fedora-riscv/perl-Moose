@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0401
-Release:        2%{?dist}
+Version:        2.0402
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -157,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Feb 05 2012 Iain Arnell <iarnell@gmail.com> 2.0402-1
+- update to latest upstream version
+
 * Sun Jan 22 2012 Iain Arnell <iarnell@gmail.com> 2.0401-2
 - drop tests subpackage; move tests to main package documentation
 
