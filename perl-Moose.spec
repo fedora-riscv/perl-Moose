@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0402
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -19,7 +19,9 @@ BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.30
 # develop
 BuildRequires:  perl(Algorithm::C3)
 BuildRequires:  perl(DBM::Deep) >= 1.0003
+%if !0%{?perl_bootstrap}
 BuildRequires:  perl(Data::Visitor)
+%endif
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -69,14 +71,12 @@ BuildRequires:  perl(Sub::Exporter) >= 0.980
 BuildRequires:  perl(Sub::Name) >= 0.05
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Try::Tiny) >= 0.02
-# recommended
-BuildRequires:  perl(Devel::PartialDump) >= 0.14
 
 
 Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
 
-# recommended
+# recommended (note: this uses Moose itself)
 Requires:       perl(Devel::PartialDump) >= 0.14
 
 # hidden from PAUSE
@@ -157,6 +157,10 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Apr 06 2012 Iain Arnell <iarnell@gmail.com> 2.0402-2
+- avoid circular build-dependencies with Data::Visitor and Devel::Partialdump
+  (patch from Paul Howarth rhbz#810394)
+
 * Sun Feb 05 2012 Iain Arnell <iarnell@gmail.com> 2.0402-1
 - update to latest upstream version
 
