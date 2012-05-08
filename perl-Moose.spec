@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0402
-Release:        2%{?dist}
+Version:        2.0602
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
@@ -157,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon May 07 2012 Iain Arnell <iarnell@gmail.com> 2.0602-1
+- update to latest upstream version
+
 * Fri Apr 06 2012 Iain Arnell <iarnell@gmail.com> 2.0402-2
 - avoid circular build-dependencies with Data::Visitor and Devel::Partialdump
   (patch from Paul Howarth rhbz#810394)
