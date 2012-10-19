@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0603
+Version:        2.0604
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -45,7 +45,7 @@ BuildRequires:  perl(Test::Output)
 BuildRequires:  perl(Test::Spelling)
 BuildRequires:  perl(URI)
 # not decalared in META.json
-BuildRequires:  perl(Carp)
+BuildRequires:  perl(Carp) >= 1.22
 BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
 
@@ -157,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Oct 19 2012 Iain Arnell <iarnell@gmail.com> 2.0604-1
+- update to latest upstream version
+
 * Sat Jul 21 2012 Iain Arnell <iarnell@gmail.com> 2.0603-1
 - update to latest upstream version
 
