@@ -1,10 +1,10 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0604
-Release:        2%{?dist}
+Version:        2.0801
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
-Source0:        http://search.cpan.org/CPAN/authors/id/D/DO/DOY/Moose-%{version}.tar.gz
+Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
@@ -157,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Apr 19 2013 Iain Arnell <iarnell@gmail.com> 2.0801-1
+- update to latest upstream version
+
 * Thu Feb 14 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0604-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_19_Mass_Rebuild
 
