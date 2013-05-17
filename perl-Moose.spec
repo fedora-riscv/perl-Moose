@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0801
+Version:        2.0802
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -143,8 +143,8 @@ make test
 
 
 %files
-%doc Changes Changes.Class-MOP LICENSE README TODO doap.rdf
-%doc t/ benchmarks/
+%doc Changes Changes.Class-MOP LICENSE TODO
+%doc t/ benchmarks/ eg/ examples/
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
 %{_mandir}/man3/*
@@ -157,6 +157,10 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri May 17 2013 Iain Arnell <iarnell@gmail.com> 2.0802-1
+- update to latest upstream version
+- add examples to documentation
+
 * Fri Apr 19 2013 Iain Arnell <iarnell@gmail.com> 2.0801-1
 - update to latest upstream version
 
