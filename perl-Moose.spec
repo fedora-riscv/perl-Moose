@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.0802
-Release:        3%{?dist}
+Release:        4%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -157,6 +157,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Aug 14 2013 Jitka Plesnikova <jplesnik@redhat.com> - 2.0802-4
+- Perl 5.18 re-rebuild of bootstrapped packages
+
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 2.0802-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_20_Mass_Rebuild
 
