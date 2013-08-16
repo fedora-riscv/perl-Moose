@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.0802
-Release:        4%{?dist}
+Version:        2.1005
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -22,6 +22,7 @@ BuildRequires:  perl(DBM::Deep) >= 1.0003
 %if !0%{?perl_bootstrap}
 BuildRequires:  perl(Data::Visitor)
 %endif
+BuildRequires:  perl(CPAN::Meta::Check) >= 0.007
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -50,8 +51,9 @@ BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
 
 # test
+BuildRequires:  perl(Test::CheckDeps) >= 0.006
 BuildRequires:  perl(Test::Fatal) >= 0.001
-BuildRequires:  perl(Test::More) >= 0.88
+BuildRequires:  perl(Test::More) >= 0.94
 BuildRequires:  perl(Test::Requires) >= 0.05
 
 # runtime
@@ -157,6 +159,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Aug 16 2013 Iain Arnell <iarnell@gmail.com> 2.1005-1
+- update to latest upstream version
+
 * Wed Aug 14 2013 Jitka Plesnikova <jplesnik@redhat.com> - 2.0802-4
 - Perl 5.18 re-rebuild of bootstrapped packages
 
