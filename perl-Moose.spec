@@ -1,7 +1,9 @@
+%global perl_bootstrap 1
+
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.1005
-Release:        1%{?dist}
+Release:        0.2%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -79,7 +81,7 @@ Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
 
 # recommended (note: this uses Moose itself)
-Requires:       perl(Devel::PartialDump) >= 0.14
+#Requires:       perl(Devel::PartialDump) >= 0.14
 
 # hidden from PAUSE
 Provides:       perl(Moose::Conflicts)
