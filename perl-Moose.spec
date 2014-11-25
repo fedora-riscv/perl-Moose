@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1005
-Release:        5%{?dist}
+Version:        2.1402
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -51,10 +51,15 @@ BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
 
 # test
+BuildRequires:  perl(Devel::OverloadInfo)
+BuildRequires:  perl(Devel::StackTrace)
+BuildRequires:  perl(Module::Runtime::Conflicts)
 BuildRequires:  perl(Test::CheckDeps) >= 0.006
+BuildRequires:  perl(Test::CleanNamespaces)
 BuildRequires:  perl(Test::Fatal) >= 0.001
 BuildRequires:  perl(Test::More) >= 0.94
 BuildRequires:  perl(Test::Requires) >= 0.05
+BuildRequires:  perl(Test::Warnings)
 
 # runtime
 BuildRequires:  perl(Class::Load) >= 0.09
@@ -146,7 +151,7 @@ make test
 
 %files
 %doc Changes Changes.Class-MOP LICENSE TODO
-%doc t/ benchmarks/ eg/ examples/
+%doc t/ benchmarks/ doc/
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
 %{_mandir}/man3/*
@@ -159,6 +164,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Nov 25 2014 Emmanuel Seyman <emmanuel@seyman.fr> - 2.1402-1
+- Update to 2.1402
+
 * Sun Sep 07 2014 Jitka Plesnikova <jplesnik@redhat.com> - 2.1005-5
 - Perl 5.20 re-rebuild of bootstrapped packages
 
