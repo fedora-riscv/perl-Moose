@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1403
+Version:        2.1404
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -53,7 +53,7 @@ BuildRequires:  perl(SUPER) >= 1.10
 # test
 BuildRequires:  perl(Devel::OverloadInfo)
 BuildRequires:  perl(Devel::StackTrace)
-BuildRequires:  perl(Module::Runtime::Conflicts)
+BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
 BuildRequires:  perl(Test::CheckDeps) >= 0.006
 BuildRequires:  perl(Test::CleanNamespaces)
 BuildRequires:  perl(Test::Fatal) >= 0.001
@@ -141,16 +141,15 @@ make %{?_smp_mflags}
 make pure_install DESTDIR=%{buildroot}
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -type f -name '*.bs' -a -size 0 -exec rm -f {} ';'
-find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
-
-%{_fixperms} %{buildroot}/*
+%{_fixperms} %{buildroot}
 
 %check
 make test
 
 
 %files
-%doc Changes Changes.Class-MOP LICENSE TODO
+%license LICENSE
+%doc Changes Changes.Class-MOP TODO
 %doc t/ benchmarks/ doc/
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
@@ -164,6 +163,10 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Apr 21 2015 Paul Howarth <paul@city-fan.org> - 2.1404-1
+- Update to 2.1404
+- Use %%license
+
 * Tue Dec 09 2014 Emmanuel Seyman <emmanuel@seyman.fr> - 2.1403-1
 - Update to 2.1403
 
