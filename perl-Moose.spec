@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1404
+Version:        2.1405
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -15,6 +15,7 @@ Obsoletes:      perl-Class-MOP-tests <= 1.12-2.fc15
 # configure
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.30
+BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
 
 # develop
 BuildRequires:  perl(Algorithm::C3)
@@ -163,6 +164,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Jun 07 2015 Emmanuel Seyman <emmanuel@seyman.fr> - 2.1405-1
+- Update to 2.1405
+
 * Tue Apr 21 2015 Paul Howarth <paul@city-fan.org> - 2.1404-1
 - Update to 2.1404
 - Use %%license
