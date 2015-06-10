@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.1405
-Release:        2%{?dist}
+Release:        3%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -164,6 +164,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Jun 10 2015 Jitka Plesnikova <jplesnik@redhat.com> - 2.1405-3
+- Perl 5.22 re-rebuild of bootstrapped packages
+
 * Mon Jun 08 2015 Jitka Plesnikova <jplesnik@redhat.com> - 2.1405-2
 - Perl 5.22 rebuild
 
