@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1603
+Version:        2.1604
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 Group:          Development/Libraries
@@ -10,12 +10,17 @@ Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $versi
 
 # Class::MOP is now included in Moose itself
 Obsoletes:      perl-Class-MOP <= 1.12-2.fc15
-Obsoletes:      perl-Class-MOP-tests <= 1.12-2.fc15
 
 # configure
+BuildRequires:  coreutils
+BuildRequires:  findutils
+BuildRequires:  gcc
+BuildRequires:  make
+BuildRequires:  perl
+BuildRequires:  perl-devel
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
-BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.30
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
+BuildRequires:  perl(ExtUtils::MakeMaker)
 
 # develop
 BuildRequires:  perl(Algorithm::C3)
@@ -23,7 +28,7 @@ BuildRequires:  perl(DBM::Deep) >= 1.0003
 %if !0%{?perl_bootstrap}
 BuildRequires:  perl(Data::Visitor)
 %endif
-BuildRequires:  perl(CPAN::Meta::Check) >= 0.007
+BuildRequires:  perl(CPAN::Meta::Check) >= 0.011
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
@@ -94,11 +99,6 @@ Provides:       perl(Moose::Error::Util)
 # virtual provides for perl-Any-Moose
 Provides:       perl(Any-Moose) = %{version}
 
-# obsolete/provide old tests subpackage
-# can be removed during F19 development cycle
-Obsoletes:      %{name}-tests < 2.0401-2
-Provides:       %{name}-tests = %{version}-%{release}
-
 %{?perl_default_filter}
 
 %description
@@ -164,6 +164,10 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Nov  8 2015 Paul Howarth <paul@city-fan.org> - 2.1604-1
+- Update to 2.1604
+- Drop obsoletes for old tests sub-package
+
 * Mon Aug 31 2015 Emmanuel Seyman <emmanuel@seyman.fr> - 2.1603-1
 - Update to 2.1603
 
