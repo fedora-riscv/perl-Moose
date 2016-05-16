@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.1801
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -164,6 +164,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon May 16 2016 Jitka Plesnikova <jplesnik@redhat.com> - 2.1801-2
+- Perl 5.24 rebuild
+
 * Fri May 06 2016 Emmanuel Seyman <emmanuel@seyman.fr> - 2.1801-1
 - Update to 2.1801
 
