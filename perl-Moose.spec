@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1801
-Release:        3%{?dist}
+Version:        2.1802
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -18,6 +18,7 @@ BuildRequires:  gcc
 BuildRequires:  make
 BuildRequires:  perl
 BuildRequires:  perl-devel
+BuildRequires:  perl-generators
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
 BuildRequires:  perl(ExtUtils::MakeMaker)
@@ -140,8 +141,8 @@ make %{?_smp_mflags}
 
 %install
 make pure_install DESTDIR=%{buildroot}
-find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
-find %{buildroot} -type f -name '*.bs' -a -size 0 -exec rm -f {} ';'
+find %{buildroot} -type f -name .packlist -delete
+find %{buildroot} -type f -name '*.bs' -empty -delete
 %{_fixperms} %{buildroot}
 
 %check
@@ -164,6 +165,11 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed May 25 2016 Paul Howarth <paul@city-fan.org> - 2.1802-1
+- Update to 2.1802
+- BR: perl-generators
+- Simplify find commands using -empty and -delete
+
 * Wed May 18 2016 Jitka Plesnikova <jplesnik@redhat.com> - 2.1801-3
 - Perl 5.24 re-rebuild of bootstrapped packages
 
