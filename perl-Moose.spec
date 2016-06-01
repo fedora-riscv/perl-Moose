@@ -1,15 +1,12 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1802
+Version:        2.1803
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
 URL:            http://search.cpan.org/dist/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-
-# Class::MOP is now included in Moose itself
-Obsoletes:      perl-Class-MOP <= 1.12-2.fc15
 
 # configure
 BuildRequires:  coreutils
@@ -41,6 +38,9 @@ BuildRequires:  perl(IO::String)
 BuildRequires:  perl(Locale::US)
 BuildRequires:  perl(Module::Info)
 BuildRequires:  perl(Module::Refresh)
+%if !0%{?perl_bootstrap}
+BuildRequires:  perl(MooseX::MarkAsMethods)
+%endif
 BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
@@ -49,10 +49,12 @@ BuildRequires:  perl(Test::Deep)
 #BuildRequires:  perl(Test::DependentModules) >= 0.12
 BuildRequires:  perl(Test::Inline)
 BuildRequires:  perl(Test::LeakTrace)
+BuildRequires:  perl(Test::Memory::Cycle)
 BuildRequires:  perl(Test::Output)
 BuildRequires:  perl(Test::Spelling)
+BuildRequires:  perl(Types::Standard)
 BuildRequires:  perl(URI)
-# not decalared in META.json
+# not declared in META.json
 BuildRequires:  perl(Carp) >= 1.22
 BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
@@ -165,6 +167,11 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Jun  1 2016 Paul Howarth <paul@city-fan.org> - 2.1803-1
+- Update to 2.1803
+- Add some optional test dependencies for better coverage
+- Drop obsoletion of perl-Class-MOP, merged into perl-Moose in Fedora 15
+
 * Wed May 25 2016 Paul Howarth <paul@city-fan.org> - 2.1802-1
 - Update to 2.1802
 - BR: perl-generators
