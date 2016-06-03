@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1803
+Version:        2.1804
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
@@ -167,6 +167,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Fri Jun  3 2016 Paul Howarth <paul@city-fan.org> - 2.1804-1
+- Update to 2.1804
+
 * Wed Jun  1 2016 Paul Howarth <paul@city-fan.org> - 2.1803-1
 - Update to 2.1803
 - Add some optional test dependencies for better coverage
