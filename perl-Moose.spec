@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.1804
-Release:        1%{?dist}
+Release:        2%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -52,7 +52,10 @@ BuildRequires:  perl(Test::LeakTrace)
 BuildRequires:  perl(Test::Memory::Cycle)
 BuildRequires:  perl(Test::Output)
 BuildRequires:  perl(Test::Spelling)
+%if !0%{?perl_bootstrap}
+# Break build cycle: perl-Moose → perl-Type-Tiny → perl-Moose
 BuildRequires:  perl(Types::Standard)
+%endif
 BuildRequires:  perl(URI)
 # not declared in META.json
 BuildRequires:  perl(Carp) >= 1.22
@@ -167,6 +170,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Jun 07 2016 Petr Pisar <ppisar@redhat.com> - 2.1804-2
+- Break build cycle: perl-Moose → perl-Type-Tiny → perl-Moose
+
 * Fri Jun  3 2016 Paul Howarth <paul@city-fan.org> - 2.1804-1
 - Update to 2.1804
 
