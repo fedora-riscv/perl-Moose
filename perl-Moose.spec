@@ -1,11 +1,11 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1804
-Release:        2%{?dist}
+Version:        2.1805
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
-URL:            http://search.cpan.org/dist/
+URL:            http://search.cpan.org/dist/Moose/
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 # configure
@@ -18,7 +18,7 @@ BuildRequires:  perl-devel
 BuildRequires:  perl-generators
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
-BuildRequires:  perl(ExtUtils::MakeMaker)
+BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.76
 
 # develop
 BuildRequires:  perl(Algorithm::C3)
@@ -40,10 +40,14 @@ BuildRequires:  perl(Module::Info)
 BuildRequires:  perl(Module::Refresh)
 %if !0%{?perl_bootstrap}
 BuildRequires:  perl(MooseX::MarkAsMethods)
+BuildRequires:  perl(MooseX::NonMoose) >= 0.25
 %endif
 BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
+%if !0%{?perl_bootstrap}
+BuildRequires:  perl(Specio) >= 0.10
+%endif
 BuildRequires:  perl(Test::Deep)
 # author test - we almost certainly don't want this in mock!
 #BuildRequires:  perl(Test::DependentModules) >= 0.12
@@ -90,7 +94,6 @@ BuildRequires:  perl(Sub::Exporter) >= 0.980
 BuildRequires:  perl(Sub::Name) >= 0.05
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Try::Tiny) >= 0.02
-
 
 Requires:       perl(Data::OptList) >= 0.107
 Requires:       perl(Dist::CheckConflicts) >= 0.02
@@ -141,18 +144,20 @@ find t/ -type f -name '*.t' -print0 \
   | xargs -0 sed -i '1s,#!.*perl,#!%{__perl},'
 
 %build
-%{__perl} Makefile.PL INSTALLDIRS=vendor OPTIMIZE="%{optflags}"
+perl Makefile.PL \
+  INSTALLDIRS=vendor \
+  OPTIMIZE="%{optflags}" \
+  NO_PERLLOCAL=1 \
+  NO_PACKLIST=1
 make %{?_smp_mflags}
 
 %install
-make pure_install DESTDIR=%{buildroot}
-find %{buildroot} -type f -name .packlist -delete
+make install DESTDIR=%{buildroot}
 find %{buildroot} -type f -name '*.bs' -empty -delete
 %{_fixperms} %{buildroot}
 
 %check
 make test
-
 
 %files
 %license LICENSE
@@ -170,6 +175,12 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Aug 20 2016 Paul Howarth <paul@city-fan.org> - 2.1805-1
+- Update to 2.1805
+- BR: perl(MooseX::NonMoose) and perl(Specio) for further test coverage
+- Use NO_PERLLOCAL/NO_PACKLIST from recent EU::MM
+- Fix wrong URL link
+
 * Tue Jun 07 2016 Petr Pisar <ppisar@redhat.com> - 2.1804-2
 - Break build cycle: perl-Moose → perl-Type-Tiny → perl-Moose
 
