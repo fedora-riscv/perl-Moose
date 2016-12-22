@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.1806
+Version:        2.1807
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
@@ -45,9 +45,7 @@ BuildRequires:  perl(MooseX::NonMoose) >= 0.25
 BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
 BuildRequires:  perl(Regexp::Common)
-%if !0%{?perl_bootstrap}
 BuildRequires:  perl(Specio) >= 0.10
-%endif
 BuildRequires:  perl(Test::Deep)
 # author test - we almost certainly don't want this in mock!
 #BuildRequires:  perl(Test::DependentModules) >= 0.12
@@ -154,7 +152,7 @@ make %{?_smp_mflags}
 %install
 make install DESTDIR=%{buildroot}
 find %{buildroot} -type f -name '*.bs' -empty -delete
-%{_fixperms} %{buildroot}
+%{_fixperms} -c %{buildroot}
 
 %check
 make test
@@ -175,6 +173,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Thu Dec 22 2016 Paul Howarth <paul@city-fan.org> - 2.1807-1
+- Update to 2.1807
+
 * Mon Sep 26 2016 Paul Howarth <paul@city-fan.org> - 2.1806-1
 - Update to 2.1806
 
