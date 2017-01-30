@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2000
+Version:        2.2002
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
@@ -44,6 +44,7 @@ BuildRequires:  perl(MooseX::NonMoose) >= 0.25
 %endif
 BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
+BuildRequires:  perl(parent)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Specio) >= 0.10
 BuildRequires:  perl(Test::Deep)
@@ -89,7 +90,7 @@ BuildRequires:  perl(Package::Stash::XS) >= 0.24
 BuildRequires:  perl(Params::Util) >= 1.00
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(Sub::Exporter) >= 0.980
-BuildRequires:  perl(Sub::Name) >= 0.05
+BuildRequires:  perl(Sub::Name) >= 0.20
 BuildRequires:  perl(Task::Weaken)
 BuildRequires:  perl(Try::Tiny) >= 0.02
 
@@ -173,6 +174,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon Jan 30 2017 Paul Howarth <paul@city-fan.org> - 2.2002-1
+- Update to 2.2002
+
 * Sun Jan 29 2017 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2000-1
 - Update to 2.2000
 
