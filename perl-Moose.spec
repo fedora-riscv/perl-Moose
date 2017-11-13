@@ -1,7 +1,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2006
-Release:        3%{?dist}
+Version:        2.2007
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 
 Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
@@ -13,9 +13,9 @@ BuildRequires:  coreutils
 BuildRequires:  findutils
 BuildRequires:  gcc
 BuildRequires:  make
-BuildRequires:  perl-interpreter
 BuildRequires:  perl-devel
 BuildRequires:  perl-generators
+BuildRequires:  perl-interpreter
 BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
 BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.76
@@ -68,6 +68,7 @@ BuildRequires:  perl(SUPER) >= 1.10
 # test
 BuildRequires:  perl(Devel::OverloadInfo)
 BuildRequires:  perl(Devel::StackTrace)
+BuildRequires:  perl(List::SomeUtils)
 BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
 BuildRequires:  perl(Test::CheckDeps) >= 0.006
 BuildRequires:  perl(Test::CleanNamespaces)
@@ -82,7 +83,7 @@ BuildRequires:  perl(Class::Load::XS) >= 0.01
 BuildRequires:  perl(Data::OptList) >= 0.107
 BuildRequires:  perl(Devel::GlobalDestruction)
 BuildRequires:  perl(Eval::Closure) >= 0.04
-BuildRequires:  perl(List::MoreUtils) >= 0.28
+BuildRequires:  perl(List::Util) >= 1.45
 BuildRequires:  perl(MRO::Compat) >= 0.05
 BuildRequires:  perl(Package::DeprecationManager) >= 0.11
 BuildRequires:  perl(Package::Stash) >= 0.32
@@ -170,6 +171,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Mon Nov 13 2017 Paul Howarth <paul@city-fan.org> - 2.2007-1
+- Update to 2.2007
+
 * Thu Aug 03 2017 Fedora Release Engineering <releng@fedoraproject.org> - 2.2006-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_27_Binutils_Mass_Rebuild
 
