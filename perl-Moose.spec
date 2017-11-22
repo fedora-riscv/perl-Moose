@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2007
+Version:        2.2008
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
@@ -67,7 +67,6 @@ BuildRequires:  perl(SUPER) >= 1.10
 
 # test
 BuildRequires:  perl(Devel::OverloadInfo)
-BuildRequires:  perl(Devel::StackTrace)
 BuildRequires:  perl(List::SomeUtils)
 BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
 BuildRequires:  perl(Test::CheckDeps) >= 0.006
@@ -82,6 +81,7 @@ BuildRequires:  perl(Class::Load) >= 0.09
 BuildRequires:  perl(Class::Load::XS) >= 0.01
 BuildRequires:  perl(Data::OptList) >= 0.107
 BuildRequires:  perl(Devel::GlobalDestruction)
+BuildRequires:  perl(Devel::StackTrace) >= 2.03
 BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(List::Util) >= 1.45
 BuildRequires:  perl(MRO::Compat) >= 0.05
@@ -171,6 +171,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Nov 22 2017 Paul Howarth <paul@city-fan.org> - 2.2008-1
+- Update to 2.2008
+
 * Mon Nov 13 2017 Paul Howarth <paul@city-fan.org> - 2.2007-1
 - Update to 2.2007
 
