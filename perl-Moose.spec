@@ -1,6 +1,6 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2010
+Version:        2.2011
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
@@ -66,7 +66,7 @@ BuildRequires:  perl(Carp::Heavy)
 BuildRequires:  perl(SUPER) >= 1.10
 
 # test
-BuildRequires:  perl(Devel::OverloadInfo)
+BuildRequires:  perl(Devel::OverloadInfo) >= 0.005
 BuildRequires:  perl(List::SomeUtils)
 BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
 BuildRequires:  perl(Test::CheckDeps) >= 0.006
@@ -171,6 +171,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed May 16 2018 Paul Howarth <paul@city-fan.org> - 2.2011-1
+- Update to 2.2011
+
 * Sun Feb 18 2018 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2010-1
 - Update to 2.2010
 
