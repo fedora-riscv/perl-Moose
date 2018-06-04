@@ -4,8 +4,8 @@ Version:        2.2011
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 
-Source0:        http://search.cpan.org/CPAN/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
-URL:            http://search.cpan.org/dist/Moose/
+Source0:        https://cpan.metacpan.org/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
+URL:            https://metacpan.org/release/Moose
 Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
 
 # configure
