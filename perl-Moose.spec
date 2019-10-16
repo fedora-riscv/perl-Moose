@@ -1,14 +1,18 @@
+# Tests with requirements that would need bootstrapping
+%if ! (0%{?rhel})
+%bcond_without perl_Moose_enables_optional_tests
+%else
+%bcond_with perl_Moose_enables_optional_tests
+%endif
+
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.2011
-Release:        8%{?dist}
+Release:        9%{?dist}
 License:        GPL+ or Artistic
-
-Source0:        https://cpan.metacpan.org/authors/id/E/ET/ETHER/Moose-%{version}.tar.gz
 URL:            https://metacpan.org/release/Moose
-Requires:       perl(:MODULE_COMPAT_%(eval "`%{__perl} -V:version`"; echo $version))
-
-# configure
+Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
+# configure / build
 BuildRequires:  coreutils
 BuildRequires:  findutils
 BuildRequires:  gcc
@@ -16,90 +20,116 @@ BuildRequires:  make
 BuildRequires:  perl-devel
 BuildRequires:  perl-generators
 BuildRequires:  perl-interpreter
-BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
-BuildRequires:  perl(ExtUtils::CBuilder) >= 0.27
+BuildRequires:  perl(base)
+BuildRequires:  perl(Config)
 BuildRequires:  perl(ExtUtils::MakeMaker) >= 6.76
-
-# develop
+BuildRequires:  perl(lib)
+# module runtime
+BuildRequires:  perl(B)
+BuildRequires:  perl(Carp) >= 1.22
+BuildRequires:  perl(Class::Load) >= 0.09
+BuildRequires:  perl(Class::Load::XS) >= 0.01
+BuildRequires:  perl(constant)
+BuildRequires:  perl(Data::Dumper)
+BuildRequires:  perl(Data::OptList) >= 0.107
+BuildRequires:  perl(Devel::GlobalDestruction)
+BuildRequires:  perl(Devel::OverloadInfo) >= 0.005
+BuildRequires:  perl(Devel::PartialDump) >= 0.14
+BuildRequires:  perl(Devel::StackTrace) >= 2.03
+BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
+BuildRequires:  perl(Eval::Closure) >= 0.04
+BuildRequires:  perl(Filter::Simple)
+BuildRequires:  perl(if)
+BuildRequires:  perl(List::Util) >= 1.45
+BuildRequires:  perl(Module::Runtime) >= 0.014
+BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
+BuildRequires:  perl(MRO::Compat) >= 0.05
+BuildRequires:  perl(overload)
+BuildRequires:  perl(Package::DeprecationManager) >= 0.11
+BuildRequires:  perl(Package::Stash) >= 0.32
+BuildRequires:  perl(Package::Stash::XS) >= 0.24
+BuildRequires:  perl(Params::Util) >= 1.00
+BuildRequires:  perl(parent) >= 0.223
+BuildRequires:  perl(re)
+BuildRequires:  perl(Scalar::Util) >= 1.19
+BuildRequires:  perl(strict)
+BuildRequires:  perl(Sub::Exporter) >= 0.980
+BuildRequires:  perl(Sub::Identify)
+BuildRequires:  perl(Sub::Name) >= 0.20
+BuildRequires:  perl(Test::Builder)
+BuildRequires:  perl(Try::Tiny) >= 0.17
+BuildRequires:  perl(warnings)
+# script runtime
+BuildRequires:  perl(Getopt::Long)
+# tests
 BuildRequires:  perl(Algorithm::C3)
-BuildRequires:  perl(DBM::Deep) >= 1.0003
-%if !0%{?perl_bootstrap}
-BuildRequires:  perl(Data::Visitor)
-%endif
 BuildRequires:  perl(CPAN::Meta::Check) >= 0.011
+BuildRequires:  perl(CPAN::Meta::Requirements)
+BuildRequires:  perl(File::Spec)
+BuildRequires:  perl(File::Temp)
+BuildRequires:  perl(FindBin)
+BuildRequires:  perl(IO::File)
+BuildRequires:  perl(IO::String)
+BuildRequires:  perl(Module::Metadata)
+BuildRequires:  perl(Symbol)
+BuildRequires:  perl(Test::Builder::Tester)
+BuildRequires:  perl(Test::CleanNamespaces) >= 0.13
+BuildRequires:  perl(Test::Fatal) >= 0.001
+BuildRequires:  perl(Test::More) >= 0.96
+BuildRequires:  perl(Test::Requires) >= 0.05
+BuildRequires:  perl(Tie::Scalar)
+# optional tests
+BuildRequires:  perl(CPAN::Meta) >= 2.120900
+%if 0%{!?perl_bootstrap:1} && %{with perl_Moose_enables_optional_tests}
+BuildRequires:  perl(Data::Visitor) >= 0.26
+%endif
 BuildRequires:  perl(DateTime)
 BuildRequires:  perl(DateTime::Calendar::Mayan)
 BuildRequires:  perl(DateTime::Format::MySQL)
+BuildRequires:  perl(DBM::Deep) >= 1.003
 BuildRequires:  perl(Declare::Constraints::Simple)
-BuildRequires:  perl(File::Find::Rule)
 BuildRequires:  perl(HTTP::Headers)
-BuildRequires:  perl(IO::File)
-BuildRequires:  perl(IO::String)
+BuildRequires:  perl(List::SomeUtils)
 BuildRequires:  perl(Locale::US)
-BuildRequires:  perl(Module::Info)
 BuildRequires:  perl(Module::Refresh)
-%if !0%{?perl_bootstrap}
+%if 0%{!?perl_bootstrap:1} && %{with perl_Moose_enables_optional_tests}
+BuildRequires:  perl(Moo)
 BuildRequires:  perl(MooseX::MarkAsMethods)
 BuildRequires:  perl(MooseX::NonMoose) >= 0.25
 %endif
 BuildRequires:  perl(PadWalker)
 BuildRequires:  perl(Params::Coerce)
-BuildRequires:  perl(parent)
 BuildRequires:  perl(Regexp::Common)
 BuildRequires:  perl(Specio) >= 0.10
+BuildRequires:  perl(SUPER) >= 1.10
 BuildRequires:  perl(Test::Deep)
-# author test - we almost certainly don't want this in mock!
-#BuildRequires:  perl(Test::DependentModules) >= 0.12
-BuildRequires:  perl(Test::Inline)
 BuildRequires:  perl(Test::LeakTrace)
 BuildRequires:  perl(Test::Memory::Cycle)
 BuildRequires:  perl(Test::Output)
-BuildRequires:  perl(Test::Spelling)
-%if !0%{?perl_bootstrap}
+BuildRequires:  perl(Test::Warnings) >= 0.016
+%if 0%{!?perl_bootstrap:1} && %{with perl_Moose_enables_optional_tests}
 # Break build cycle: perl-Moose → perl-Type-Tiny → perl-Moose
 BuildRequires:  perl(Types::Standard)
 %endif
 BuildRequires:  perl(URI)
-# not declared in META.json
-BuildRequires:  perl(Carp) >= 1.22
-BuildRequires:  perl(Carp::Heavy)
-BuildRequires:  perl(SUPER) >= 1.10
-
-# test
-BuildRequires:  perl(Devel::OverloadInfo) >= 0.005
-BuildRequires:  perl(List::SomeUtils)
-BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
-BuildRequires:  perl(Test::CheckDeps) >= 0.006
-BuildRequires:  perl(Test::CleanNamespaces)
-BuildRequires:  perl(Test::Fatal) >= 0.001
-BuildRequires:  perl(Test::More) >= 0.96
-BuildRequires:  perl(Test::Requires) >= 0.05
-BuildRequires:  perl(Test::Warnings)
-
-# runtime
-BuildRequires:  perl(Class::Load) >= 0.09
-BuildRequires:  perl(Class::Load::XS) >= 0.01
-BuildRequires:  perl(Data::OptList) >= 0.107
-BuildRequires:  perl(Devel::GlobalDestruction)
-BuildRequires:  perl(Devel::StackTrace) >= 2.03
-BuildRequires:  perl(Eval::Closure) >= 0.04
-BuildRequires:  perl(List::Util) >= 1.45
-BuildRequires:  perl(MRO::Compat) >= 0.05
-BuildRequires:  perl(Package::DeprecationManager) >= 0.11
-BuildRequires:  perl(Package::Stash) >= 0.32
-BuildRequires:  perl(Package::Stash::XS) >= 0.24
-BuildRequires:  perl(Params::Util) >= 1.00
-BuildRequires:  perl(Scalar::Util) >= 1.19
-BuildRequires:  perl(Sub::Exporter) >= 0.980
-BuildRequires:  perl(Sub::Name) >= 0.20
-BuildRequires:  perl(Task::Weaken)
-BuildRequires:  perl(Try::Tiny) >= 0.02
-
+# versioned and optional dependencies
+Requires:       perl(:MODULE_COMPAT_%(eval "`perl -V:version`"; echo $version))
+Requires:       perl(Class::Load) >= 0.09
+Requires:       perl(Class::Load::XS) >= 0.01
+Requires:       perl(Data::Dumper)
 Requires:       perl(Data::OptList) >= 0.107
-Requires:       perl(Dist::CheckConflicts) >= 0.02
-
-# recommended (note: this uses Moose itself)
 Requires:       perl(Devel::PartialDump) >= 0.14
+Requires:       perl(Dist::CheckConflicts) >= 0.02
+Requires:       perl(Eval::Closure) >= 0.04
+Requires:       perl(Module::Runtime::Conflicts) >= 0.002
+Requires:       perl(MRO::Compat) >= 0.05
+Requires:       perl(Package::DeprecationManager) >= 0.11
+Requires:       perl(Package::Stash) >= 0.32
+Requires:       perl(Package::Stash::XS) >= 0.24
+Requires:       perl(Params::Util) >= 1.00
+Requires:       perl(parent) >= 0.223
+Requires:       perl(Sub::Name) >= 0.20
+Requires:       perl(Try::Tiny) >= 0.17
 
 # hidden from PAUSE
 Provides:       perl(Moose::Conflicts) = 0
@@ -145,10 +175,10 @@ perl Makefile.PL \
   OPTIMIZE="%{optflags}" \
   NO_PERLLOCAL=1 \
   NO_PACKLIST=1
-make %{?_smp_mflags}
+%{make_build}
 
 %install
-make install DESTDIR=%{buildroot}
+%{make_install}
 find %{buildroot} -type f -name '*.bs' -empty -delete
 %{_fixperms} -c %{buildroot}
 
@@ -157,7 +187,7 @@ make test
 
 %files
 %license LICENSE
-%doc Changes Changes.Class-MOP TODO
+%doc Changes Changes.Class-MOP README.md TODO
 %doc t/ benchmarks/ doc/
 %{perl_vendorarch}/*
 %exclude %dir %{perl_vendorarch}/auto/
@@ -171,6 +201,13 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Tue Oct 15 2019 Paul Howarth <paul@city-fan.org> - 2.2011-9
+- Spec tidy-up
+  - Use author-independent source URL
+  - Don't run tests that would require bootstapping on EPEL
+  - Refresh build and runtime dependencies
+  - Use %%{make_build} and %%{make_install}
+
 * Fri Jul 26 2019 Fedora Release Engineering <releng@fedoraproject.org> - 2.2011-8
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
