@@ -7,8 +7,8 @@
 
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2011
-Release:        9%{?dist}
+Version:        2.2012
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Moose
 Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
@@ -201,6 +201,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sat Nov 23 2019 Paul Howarth <paul@city-fan.org> - 2.2012-1
+- Update to 2.2012
+
 * Tue Oct 15 2019 Paul Howarth <paul@city-fan.org> - 2.2011-9
 - Spec tidy-up
   - Use author-independent source URL
