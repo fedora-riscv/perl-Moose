@@ -7,8 +7,8 @@
 
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2012
-Release:        4%{?dist}
+Version:        2.2013
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Moose
 Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
@@ -201,6 +201,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Wed Jul 22 2020 Paul Howarth <paul@city-fan.org> - 2.2013-1
+- Update to 2.2013
+
 * Fri Jun 26 2020 Jitka Plesnikova <jplesnik@redhat.com> - 2.2012-4
 - Perl 5.32 re-rebuild of bootstrapped packages
 
