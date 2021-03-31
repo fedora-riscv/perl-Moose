@@ -40,7 +40,7 @@ BuildRequires:  perl(Dist::CheckConflicts) >= 0.02
 BuildRequires:  perl(Eval::Closure) >= 0.04
 BuildRequires:  perl(Filter::Simple)
 BuildRequires:  perl(if)
-BuildRequires:  perl(List::Util) >= 1.45
+BuildRequires:  perl(List::Util) >= 1.56
 BuildRequires:  perl(Module::Runtime) >= 0.014
 BuildRequires:  perl(Module::Runtime::Conflicts) >= 0.002
 BuildRequires:  perl(MRO::Compat) >= 0.05
@@ -87,7 +87,6 @@ BuildRequires:  perl(DateTime::Format::MySQL)
 BuildRequires:  perl(DBM::Deep) >= 1.003
 BuildRequires:  perl(Declare::Constraints::Simple)
 BuildRequires:  perl(HTTP::Headers)
-BuildRequires:  perl(List::Util) >= 1.56
 BuildRequires:  perl(Locale::US)
 BuildRequires:  perl(Module::Refresh)
 %if 0%{!?perl_bootstrap:1} && %{with perl_Moose_enables_optional_tests}
