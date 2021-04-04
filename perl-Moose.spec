@@ -7,8 +7,8 @@
 
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2014
-Release:        2%{?dist}
+Version:        2.2015
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Moose
 Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
@@ -68,7 +68,6 @@ BuildRequires:  perl(File::Spec)
 BuildRequires:  perl(File::Temp)
 BuildRequires:  perl(FindBin)
 BuildRequires:  perl(IO::File)
-BuildRequires:  perl(IO::String)
 BuildRequires:  perl(Module::Metadata)
 BuildRequires:  perl(Symbol)
 BuildRequires:  perl(Test::Builder::Tester)
@@ -88,7 +87,7 @@ BuildRequires:  perl(DateTime::Format::MySQL)
 BuildRequires:  perl(DBM::Deep) >= 1.003
 BuildRequires:  perl(Declare::Constraints::Simple)
 BuildRequires:  perl(HTTP::Headers)
-BuildRequires:  perl(List::SomeUtils)
+BuildRequires:  perl(List::Util) >= 1.56
 BuildRequires:  perl(Locale::US)
 BuildRequires:  perl(Module::Refresh)
 %if 0%{!?perl_bootstrap:1} && %{with perl_Moose_enables_optional_tests}
@@ -200,6 +199,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Apr 04 2021 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2015-1
+- Update to 2.2015
+
 * Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.2014-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
