@@ -7,8 +7,8 @@
 
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2015
-Release:        4%{?dist}
+Version:        2.2200
+Release:        1%{?dist}
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Moose
 Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
@@ -54,7 +54,7 @@ BuildRequires:  perl(re)
 BuildRequires:  perl(Scalar::Util) >= 1.19
 BuildRequires:  perl(strict)
 BuildRequires:  perl(Sub::Exporter) >= 0.980
-BuildRequires:  perl(Sub::Name) >= 0.20
+BuildRequires:  perl(Sub::Util) >= 1.40
 BuildRequires:  perl(Test::Builder)
 BuildRequires:  perl(Try::Tiny) >= 0.17
 BuildRequires:  perl(warnings)
@@ -125,7 +125,7 @@ Requires:       perl(Package::Stash) >= 0.32
 Requires:       perl(Package::Stash::XS) >= 0.24
 Requires:       perl(Params::Util) >= 1.00
 Requires:       perl(parent) >= 0.223
-Requires:       perl(Sub::Name) >= 0.20
+Requires:       perl(Sub::Util) >= 1.40
 Requires:       perl(Try::Tiny) >= 0.17
 
 # hidden from PAUSE
@@ -198,6 +198,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Oct 31 2021 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2200-1
+- Update to 2.2200
+
 * Thu Jul 22 2021 Fedora Release Engineering <releng@fedoraproject.org> - 2.2015-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 
