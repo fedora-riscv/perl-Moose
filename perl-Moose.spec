@@ -7,7 +7,7 @@
 
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
-Version:        2.2200
+Version:        2.2201
 Release:        1%{?dist}
 License:        GPL+ or Artistic
 URL:            https://metacpan.org/release/Moose
@@ -198,6 +198,9 @@ make test
 %{_mandir}/man3/Test::Moose*
 
 %changelog
+* Sun Nov 07 2021 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2201-1
+- Update to 2.2201
+
 * Sun Oct 31 2021 Emmanuel Seyman <emmanuel@seyman.fr> - 2.2200-1
 - Update to 2.2200
 
