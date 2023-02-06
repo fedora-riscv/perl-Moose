@@ -1,10 +1,2 @@
-from Config import *
-
 # Nothing from upstream here
 addFilter("no-manual-page-for-binary moose-outdated")
-
-# noarch part of arch package, can't be noarch sub-package though because of where it gets installed
-addFilter("only-non-binary-in-usr-lib")
-
-# Technical term not in dictionary
-addFilter("spelling-error %description -l en_US metaclass -> ")
