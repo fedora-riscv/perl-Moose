@@ -1,5 +1,3 @@
-%global perl_bootstrap 1
-
 # Tests with requirements that would need bootstrapping
 %if ! (0%{?rhel})
 %bcond_without perl_Moose_enables_optional_tests
@@ -10,7 +8,7 @@
 Name:           perl-Moose
 Summary:        Complete modern object system for Perl 5
 Version:        2.2206
-Release:        1.rv64~bootstrap%{?dist}
+Release:        1.rv64%{?dist}
 License:        GPL-1.0-or-later OR Artistic-1.0-Perl
 URL:            https://metacpan.org/release/Moose
 Source0:        https://cpan.metacpan.org/modules/by-module/Test/Moose-%{version}.tar.gz
